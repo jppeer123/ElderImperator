@@ -1,0 +1,15 @@
+﻿l_english:
+ END_GAME_VIEW_LOSING_TITLE:0 "Game Over"
+ END_GAME_VIEW_LOSING_TEXT:0 "The glorious era of [COUNTRY.GetName] has come to an ignominious end on $DATE$, at the hands of [TARGET_COUNTRY.GetRuler.GetName] and the [TARGET_COUNTRY.GetAdjective] people.\n\nAs the sands of time pass, our proud people will be lost to history, marked only as a side note in the epic poems of our enemy's successes."
+  
+ END_GAME_VIEW_SURVIVING_TITLE:1 "A Minor Addendum to History"
+ END_GAME_VIEW_SURVIVING_TEXT:1 "Our proud nation has survived centuries of struggle, warfare, and adversity, yet despite this, the [COUNTRY.GetAdjective] people have achieved little of note. In a world filled with behemoths of civilization and battle, we are but a side note."
+  
+ END_GAME_VIEW_IMPERIAL_GLORY_TITLE:0 "An Empire for the Ages"
+ END_GAME_VIEW_IMPERIAL_GLORY_TEXT:1 "The [COUNTRY.GetAdjective] people have built an empire that shall be remembered by history as being first amongst its peers. Despite our travails, [COUNTRY.GetName] continues to prosper, and will surely do so until the end of time."
+  
+ END_GAME_VIEW_GREATEST_EMPIRE_TITLE:0 "The Greatest Empire in History"
+ END_GAME_VIEW_GREATEST_EMPIRE_TEXT:1 "The [COUNTRY.GetAdjective] people are to be lauded by the gods themselves, having built an empire surpassing even that of Alexander.\n\nHistory shall look back on us not merely as conquerors, but as bringers of civilization and truth to all parts of the globe."
+ 
+ OBSERVE:0 "Continue in Observer Mode"
+  

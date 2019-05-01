@@ -1,0 +1,176 @@
+﻿l_english:
+ become_despotic_monarchy_tribal:0 "Embrace Autocracy"
+ become_despotic_monarchy_tribal_desc:0 "[COUNTRY.GetRuler.GetName], inspired by the Kings and Tyrants of foreign lands, might exert greater authority by discarding the tribal trappings of our ancestors."
+ become_democracy_tribal:0 "Embrace Democracy"
+ become_democracy_tribal_desc:0 "The Chiefs, Elders, and Magistrates of [COUNTRY.GetName] believe that adopting a more constitutional form of democracy will allow us to prosper fully."
+ become_despotic_monarchy_plutocrat:0 "Embrace Autocracy!"
+ become_despotic_monarchy_plutocrat_desc:0 "[COUNTRY.GetName] needs a firm hand to guide her through these dark times. [COUNTRY.GetRuler.GetName] would make a fine KINGY/QUEENY."
+ become_democracy_plutocrat:0 "Transition to Democratic Republic"
+ become_democracy_plutocrat_desc:0 "True democracy is surely an admirable goal for [COUNTRY.GetName]."
+ proclaim_theocratic_republic:0 "Proclaim Theocratic Republic"
+ proclaim_theocratic_republic_desc:0 "By the help of the divine, and with the zeal of her people, [COUNTRY.GetName] shall endure for all eternity!"
+ 
+ become_tribal_chiefdom:0 "Abandon Sedentary Lifestyle"
+ become_tribal_chiefdom_desc:0 "Times are changing and this land can no longer support our great tribe. It is time to once more embrace the traditions of our ancestors, and prepare for migrations to more peaceful and fertile lands."
+ become_tribal_kingdom:0 "Form Tribal Kingdom"
+ become_tribal_kingdom_desc:0 "We have found a good home, it is time we settle down and adopt a more sedentary lifestyle. Let us proclaim ourselves a kingdom, separating ourselves from the migratory tribes to which we once belonged."
+ cannot_stop_migrating_tooltip:0 "Must not be undergoing migration."
+ 
+ become_aristocratic_monarchy:0 "Embrace an Aristocratic Society"
+ become_aristocratic_monarchy_desc:0 "Those of noble blood should not be required to mingle with commoners..."
+ become_elective_monarchy:0 "Institute Elective Monarchy"
+ become_elective_monarchy_desc:0 "An Elective Monarchy would ensure that power always rests in the hands of the meritorious. Ideally."
+ become_theocratic_monarchy:0 "Proclaim Theocratic Monarchy"
+ become_theocratic_monarchy_desc:0 "The glory of the divine shall shine upon [COUNTRY.GetRuler.GetName] - the [COUNTRY.GetAdjective] people are truly blessed."
+ become_stratocratic_monarchy:0 "Adopt Stratocratic Monarchy"
+ become_stratocratic_monarchy_desc:0 "The [COUNTRY.GetAdjective] people yearn to show the world their might. By stratifying our very society in a militarized hierarchy, we shall show the glory of [COUNTRY.GetName] to all!"
+ 
+ proclaim_oligarchic_republic:0 "Promote Oligarchy"
+ proclaim_oligarchic_republic_desc:0 "Constitutionalizing the inherent superiority of those who have, versus those who do not have; will ensure that [COUNTRY.GetName] maintains a prosperous government."
+ proclaim_aristocratic_republic:0 "Enshrine Aristocracy"
+ proclaim_aristocratic_republic_desc:0 "The ability to rule clearly runs in the family. Whilst democracy serves us well, perhaps we might ensure that the plebeian masses are prevented from interfering in government."
+ 
+ 
+ proclaim_dictatorship:0 "Proclaim Dictatorship"
+ proclaim_dictatorship_desc:0 "It is becoming increasingly apparent that power cannot be trusted in the hands of the many. Absolute security demands absolute authority."
+ 
+ create_empire:0 "Imperial Ambition"
+ create_empire_desc:0 "[COUNTRY.GetRuler.GetName], resplendent in the glory of conquest, has eclipsed all other petty Kingdoms; a new title is needed for the ruler of the [COUNTRY.GetAdjective] Empire."
+ deify_emperor:0 "Divine Sanction"
+ deify_emperor_desc:0 "Few are in denial that [COUNTRY.GetRuler.GetName] is blessed. It follows, therefore, that such divine heritage can only be the property of a divine being."
+ 
+ found_the_museion:0 "A Temple to the Muses"
+ found_the_museion_desc:0 "As the natural center of the Post-Alexandrine world the city of Alexandria already attracts many of the best and the brightest Hellenistic minds. We must embrace this role as the carrier of Greek culture and philosophy, and create a temple to the Muses themselves. In this Museion all texts ever written in Greek would be assembled, and any texts yet unknown to Greek scholarship translated.\nWhile it has been the ambition of many a great monarch to assemble a personal library worthy of admiration and envy, few have dared aim as high as this. Should we succeed our memory will live on for centuries, if not millennia."
+ 
+ construction_of_the_pharos:0 "Pharos Lighthouse"
+ construction_of_the_pharos_desc:0 "Maritime journeys are never entirely safe, from pirates and wreckers to storms and tempests the Mediterranean is a dangerous place to be. Nonetheless it is the quickest way to travel for a grand city such as Alexandria on the Nile it is imperative that we are able to guarantee the safety of all ships and sailors.\nThe small island of Pharos just outside our port would be the perfect location for a great lighthouse to guide the way for all shipping. This venture would also put an end to the infamous wreckers that often roam the island."
+
+ construction_of_the_colossus:0 "Colossus of Rhodes"
+ construction_of_the_colossus_desc:0 "Many say we were blessed by Helios himself when we managed to stop Demetrius I the Besieger from taking our island and city. We fought valiantly to beat back the oppressing Antigonids, and with the help of the Ptolemies of Egypt we managed to secure our independence.\n\nIt is time to thank the god for his help in protecting the island, and celebrate our victory. Our architects have prepared the necessary documents for a massive statue in the honor of the god, that will forever protect the ports of Rhodes."
+
+ fix_volcanic_area_vesuvius:0 "Vesuvius Restoration"
+ fix_volcanic_area_vesuvius_desc:0 "Huge swaths of land around Vesuvius was destroyed as the volcano erupted. It is time we set aside the funds to start restoring the land so we can use it more effectively yet again."
+
+ fix_volcanic_area_aetna:0 "Aetna Restoration"
+ fix_volcanic_area_aetna_desc:0 "Huge swaths of land around Aetna was destroyed as the volcano erupted. It is time we set aside the funds to start restoring the land so we can use it more effectively yet again."
+
+ fix_volcanic_area_ararat:0 "Ararat Restoration"
+ fix_volcanic_area_ararat_desc:0 "Huge swaths of land around Ararat was destroyed as the volcano erupted. It is time we set aside the funds to start restoring the land so we can use it more effectively yet again."
+
+ fix_volcanic_area_methana:0 "Methana Restoration"
+ fix_volcanic_area_methana_desc:0 "Huge swaths of land around Methana was destroyed as the volcano erupted. It is time we set aside the funds to start restoring the land so we can use it more effectively yet again."
+ 
+ negotiate_with_slaves:0 "Negotiate with revolting Slaves"
+ negotiate_with_slaves_desc:0 "We must end the current unrest among the slaves quickly and at any price. If we allow them to settle in peace, promising them that no harm will come to them and helping them start new lives, we may convince them to lay down their arms."
+ allow_slaves_to_settle:0 "All Rebel controlled cities will revert to our control.\nAny revolting slaves will be settled where they stand as Freemen."
+ 
+ ACHAEMENID_FLAG:0 "the Standard of Cyrus the Great"
+ 
+ found_carthago_nova:0 "A New Carthage!"
+ found_carthago_nova_desc:0 "Hispania is a land of great riches. In order to continue to build a strong presence there we should endeavor to find a great new port on its southern coastline, a second capital on the other side of the sea. This new city, Qadr Hasht, will be to Hispania what our own capital was to the Punic settlers of Africa, a focal point for all colonies on the coastline and a clear leader for all Punic cities."
+ carthage_claims_hispania:0 "Carthage will gain claims on the Hispanian coastline."
+ carthago_nova_modifier:1 "Carthaginian Metropolis"
+ desc_carthago_nova_modifier:0 "This is the site of Qadr Hasht, a new Carthage, far away from the squabbling politics of Africa, on the coastline of the rich peninsula of Hispania."
+ restructure_military_port_of_carthage:0 "Restructure Military Harbor of Carthage"
+ restructure_military_port_of_carthage_desc:0 "The Carthaginian harbor has always been one of the greatest in the Punic world but as our Empire has grown, along with the city itself, a need has been born for a restructured and re-imagined harbor. We must spare no expense and expand the capabilities of our capital as a naval base and shipbuilding center."
+ carthage_mercenary_overlord:0 "Mercenary Patron"
+ carthage_mercenary_overlord_desc:0 "Our history with the local mercenary companies is a long one, where we have often turned to their help to secure our goals. Particularly in the many drawn out wars in Sicily, they played an essential part in protecting our interests.\n\nAs we are already close friends with some of the mercenary warlords, we should be able to convince them to settle down in Carthage. With our patronage, the companies will flourish and we will secure their loyalty at a cheaper price in future conflicts."
+
+ expand_the_campus_martius:0 "Expanding the Campus Martius"
+ expand_the_campus_martius_desc:0 "The Campus Martius plays an essential role in training our troops and inspire them to greatness. By expanding the training site we will have a greater capacity for recruiting and preparing new soldiers for warfare.\n\nIn addition we will build new temples that will make the Campus a place worth remembering. As they train, our men will be able to look to these places for valor and strength."
+ embellish_jupiter_optimus_maximus:0 "Embellish the Temple of Jupiter Optimus Maximus"
+ embellish_jupiter_optimus_maximus_desc:0 "The Temple of Jupiter Optimus Maximus stands at the center of our faith and city. At the Capitoline Hill it stands as a testament to our rule, and the blessing of the heavens.\n\nEmbellishing and improving the temple further is sure to be a popular move among our people, and what better way to secure the boons of the gods?."
+ 
+ convert_to_buddhist:0 "Embrace Buddhism"
+ convert_to_buddhist_desc:0 "The teachings of Buddha are spreading rapidly in our lands. It is time to embrace his philosophy ourselves and start promoting these words among our subjects."
+ religion_conversion_tooltip:0 "#R Every Character will lose 20 loyalty. #!"
+ 
+ convert_to_jainism:0 "Embrace Jainism"
+ convert_to_jainism_desc:0 "Jain teachings are spreading rapidly in our land and among the characters of our court. The time has come to embrace these deep philosophies and incorporate them into the very fabric of our state itself."
+ 
+ convert_to_hinduism:0 "Embrace Hinduism"
+ convert_to_hinduism_desc:0 "Let the Vedas and the ancient teachings of old India be the official policy of our state, let us promote Hinduism among our subjects and at our court."
+ 
+ unite_the_dahae:0 "Unite the Dahae"
+ unite_the_dahae_desc:0 "For too long the Dahae tribes have been squabbling between themselves. We have been disunited and weak, open to the whims of the great empires that surround us.\nLet us unite the Dahae tribes into a powerful tribal federation, only then will we be masters of our own faith."
+ unite_dahae_claims_tooltip:0 "Dahae will gain Claims on the Province of #Y Parthia#!."
+ 
+ hellenic_league_tooltip:0 "All city states in Greece or the area of Thessaly will be annexed by the Hellenic League."
+ pan_hellenic_league:0 "Pan-Hellenic League"
+ pan_hellenic_league_desc:0 "During the days of Argead domination the League of Corinth united all Greek cities in one league. The goal of this organization was always to control them, and to deny them the independence that they are due. But the idea of a Pan-Hellenic League has not died with the oppressive actions of the Argeads and Antipatrids, it could also be the ultimate guarantor of Greek Independence.\nLet us unite one and all and form a League to encompass all the free cities of Greece. Together we will become the dominant force of the Greek world, leaving the kingdoms of would be successors, or usurpers, behind us."
+ formable_not_hellenic_league_exists:0 "The Hellenic League must not exist already."
+ 
+ reunite_alexanders_empire:0 "Reunite Alexander's Empire"
+ reunite_alexanders_empire_desc:0 "For too long parasites and scavengers have made a feast of the Great Empire that Alexander spent a lifetime building. It is time we do away with all claimants, usurpers and delusional provincial strongmen. There can be only one authority within the empire of Alexander the Great, one upholder of the great Hellenistic legacy that this great man founded.\nThat one power could not possibly come from any dynasty but our own. Only a family that respects the Argead traditions can legitimately claim its legacy."
+ formable_not_argeads_exists:0 "The Argead Empire must NOT already exist."
+ argead_empire_tooltip:1 "The Argead Empire will gain Claims on the Regions of #Y Macedonia#!, #Y Hellas#!, #Y Thrace#!, #Y Asia#!, #Y Phrygia#!, #Y Cappadocia#!, #Y Cilicia#!, #Y Bithynia#!, #Y Assyria#!, #Y Mesopotamia#!, #Y Persis#!, #Y Media#!, #Y Gedrosia#!, #Y Parthia#!, #Y Bactriana#!, #Y Ariana#!, #Y Palestine#!, #Y Syria#!, #Y Gandhara#!, #Y Upper Egypt#!, and #Y Lower Egypt#!."
+ 
+ egypt_not_existing:0 "Egypt must not exist."
+ form_egypt:0 "Form Egypt"
+ form_egypt_desc:0 "Egypt is perhaps the oldest civilization of all, and yet she is not free. Instead pretenders have usurped the kingdom and play at honoring the old gods. This cannot be tolerated. We must unite Upper and Lower Egypt once again under a dynasty that truly understands and cherishes the legacy of the Pharaohs."
+ egypt_claims_tooltip:1 "Egypt will gain Claims on the Regions of #Y Upper Egypt#! and #Y Lower Egypt#!."
+ 
+ assyria_must_not_exist:0 "Assyria Must not Exist"
+ form_assyria:0 "Form Assyria"
+ form_assyria_desc:0 "Before it was crushed by hostile powers Assyria was the thriving center of a great Empire. Let us once again unite these lands and form the greater country of Assyria, honoring the old gods and traditions of our people."
+ assyria_claims_tooltip:1 "Assyria will gain Claims on the Regions of #Y Assyria#! and #Y Babylonia#!."
+ 
+ armenia_claims_tooltip:1 "Armenia will gain Claims on the Region of #Y Armenia#!, and the Provinces of #Y Armenia Maior#!, #Y Armenia Minor#!, #Y Sophene#!, and #Y Corduene#!."
+ armenia_must_not_exist:0 "Armenia must not exist."
+ form_armenia:0 "Form Armenia"
+ form_armenia_desc:0 "The lands of Armenia need able and strong leadership. Let us unite the Armenian people and forge a stronger and more durable Armenian empire."
+ 
+ galatia_claims_tooltip:1 "Galatia will gain Claims on the Regions of #Y Phrygia#! and #Y Cappadocia#!."
+ galatia_must_not_exist:0 "Galatia must not exist."
+ form_galatia:0 "Form Galatia"
+ form_galatia_desc:0 "While we are far from the ancestral homeland of our people this is still a good land. Let us create a new state here, and teach these local peoples about the capabilities of the Celtic peoples."
+ 
+ phrygia_claims_tooltip:1 "Phrygia will gain Claims on the Regions of #Y Phrygia#! and #Y Cappadocia#!."
+ phrygia_must_not_exist:0 "Phrygia must not exist."
+ form_phrygia:0 "Form Phrygia"
+ form_phrygia_desc:0 "For too long have we languished under the rule of foreign Greek or Persian conquerors. It is time the Phrygians unite and re-establish a state of their own. We will reclaim the legacy of our people and our gods."
+ 
+ pontus_claims_tooltip:1 "Pontus will gain Claims on the Regions of #Y Bithynia#! and #Y Cappadocia#!."
+ pontus_must_not_exist:0 "Pontus must not exist."
+ form_pontus:0 "Form Pontus"
+ form_pontus_desc:0 "Once a proud kingdom of its own Pontus was reduced to a Satrapy under the Achaemenids and later devolved into a no mans land under the Successors. We must restore the great state that once was and create a new Pontic Kingdom."
+ 
+ macedon_claims_tooltip:1 "Macedon will gain Claims on the Region of #Y Macedonia#!."
+ macedon_not_existing:0 "Macedon must not exist."
+ form_macedon:0 "Form Macedon"
+ form_macedon_desc:0 "The Barons of Macedon have always favored the strong and able over the weak and feeble. Let us seize the kingdom away from those that are leading it to ruin and create a new stronger state for the Macedonians to serve."
+ 
+ dravida_claims_tooltip:1 "Dravida will gain Claims on the Regions of #Y Dravida#! and #Y Karnata#!."
+ dravida_not_existing:0 "Dravida must not exist."
+ form_dravida:0 "Form Dravida"
+ form_dravida_desc:0 "By uniting the peoples of all Dravidian lands we can create a strong counterpart to the great empires of the north. A nation to safeguard the ancient traditions of our ancestors and protect the rich soils of the south."
+ 
+ bharatavarsha_not_existing:0 "Bharatavarsha must not exist."
+ unite_india:0 "Must own all cities in the regions of Gandhara, Maru, Avanti, Madhyadesa, Pracya, Dravida and Vindhyaprstha."
+ form_bharatavarsha:0 "Bharatavarsha"
+ form_bharatavarsha_desc:0 "The Puranas speak of a united subcontinent, entrusted to Bharata, and known as Bharatavarsha. We must aspire to unite all of those lands so that the subcontinent may enjoy stability and peace."
+
+ rebuild_corinth:0 "Institute Corinth as Local Capital"
+ rebuild_corinth_desc:0 "Our wars in Greece have exacted a heavy toll on the area. A show of magnanimity is required to build confidence in our rule, and our advisors suggest that Corinth would be the ideal place for a concerted effort to implement a program of public works."
+ corinth_gets_tt:0 "#Y Korinthos#!:"
+ 
+ pops_to_decivilize_pop:0 "Must have more Tribesmen than Citizens or Freemen."
+ 
+ enshrine_social_equity:0 "Embrace Social Equity"
+ enshrine_social_equity_desc:0 "For too long have we ignored a full half of our populace. Let us break the barriers of bygone tradition, and let all stand for office."
+ 
+ abolish_social_equity:0 "Abolish Social Equity"
+ abolish_social_equity_desc:0 "The traditionalists whisper in dark corners, and the bearded  ancients pour scorn on us. Our attempts at progressive governance must come to an end."
+ 
+ social_equity_tooltip:0 "You cannot switch #Y Gender Equality#! policy for #Y 20#! years after changing it."
+ 
+ persian_claims_tooltip:1 "Persia will gain Claims on the Regions of #Y Persis#!, #Y Media#!, #Y Parthia#!, #Y Ariana#!, #Y Mesopotamia#!, #Y Bactriana#!, #Y Gedrosia#! and #Y Assyria#!."
+ 
+ move_capital_seleukia_pieria:0 "A Mediterranean Capital!"
+ move_capital_seleukia_pieria_desc:0 "For too long the rightful heirs of Alexander's empire have been disconnected from the Macedonian heartland which bore the greatest conquest of history and all the fortunes of our people. Fertile Babylonia has served us well, but we must restore our ties with the lost lands to the west and establish a central point of governance on the Mediterranean if we are to succeed in re-claiming the lands of Megas Alexandros."
+ move_capital_seleukia_pieria_claims:0 "The Seleucid Empire will gain claims on Palestine and Syria."
+ seleukia_pieria_modifier:0 "Seleucid Metropolis"
+ desc_seleukia_pieria_modifier:0 "Seleukia Pieria - Seleukia on the Sea - was established as a new capital for the Seleucid Empire, far closer to the Macedonian heartland than the old capital in Babylonia and with access to the trade routes of the Mediterranean through its natural harbor."
+ 
+ indo_greek_decision:0 "An Indo-Greek Kingdom"
+ indo_greek_decision_desc:0 "The lure of friends, empires, and riches to the East leads many of our people to the realization that fighting over the scraps of Alexander's Empire, may not be a goal worth pursuing. Greater glory lies in tying our destiny to the land beyond the Indus."

@@ -1,0 +1,10 @@
+﻿l_english:
+ MERC_HIRED_BY:0 "#T $WHO$#!\nThese mercenaries are under the employment of $LONGNAME|V$"
+ MERC_GOTO_TOOLTIP:0 "#T Current Location#!\n#I Click here to pan the camera to where this mercenary is located on the map.#!"
+ MERC_ALREADY_EMPLOPED:1 "@trigger_no!These mercenaries are already serving $NAME|y$."
+ RECRUIT_MERCENARY_TITLE:0 "#T Recruit Mercenary#!"
+ RECRUIT_MERCENARY_TT:1 "Recruiting $NAME|Y$ will cost $COST$ and have them serve us until further notice.\n\nThis cost is due to:\n$COST_WHY$\n$MONTHLY_COST$"
+ RECRUIT_MERCENARY_BUTTON:0 "Recruit"
+ MERC_OUT_OF_RANGE:1 "@trigger_no!These mercenaries are based from $WHERE|Y$, which is outside our diplomatic range."
+ MERC_CANT_AFFORD_DEBT:2 "@trigger_no!You need to have at least $COUNT|0Y$ times the disband cost of $COST|Y$@gold! for all mercenaries, including this one, in the bank to sign up a mercenary."
+ RECRUIT_MERCENARY_BUTTON_TT:0 "$RECRUIT_MERCENARY_TITLE$\n[MercenaryItem.GetButtonTooltip]"

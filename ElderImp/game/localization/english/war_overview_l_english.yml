@@ -1,0 +1,23 @@
+﻿l_english:
+ WAR_OVERVIEW_SUE_FOR_PEACE:0 "Sue for peace"
+ WAR_OVERVIEW_SUE_FOR_PEACE_TOOLTIP:0 "Sue for peace"
+ WARGOAL_IS_CONQUEST:0 "#T Wargoal Enforced#!\n"
+ WARGOAL_IS_SAFE:0 "#T Wargoal Protected#!\n"
+
+ WAR_OVERVIEW_DATE_TOOLTIP:0 "War started on [WarOverview.GetWar.GetStartDate]"
+ WAR_OVERVIEW_WAR_GOAL_TOOLTIP:0 "This war was started by [WarOverview.GetWar.GetOriginalAttacker.GetName] against [WarOverview.GetWar.GetOriginalDefender.GetName].\n[WarOverview.GetWar.GetWarGoal.GetDescription]"
+ 
+ WAR_OVERVIEW_WINLOSE_VS:1 "@[COUNTRY.GetFlag]! $NUM$ vs @[TARGET_COUNTRY.GetFlag]! $TARGET_NUM$"
+ WAR_OVERVIEW_RESULT_WIN:0 "#G Win#!"
+ WAR_OVERVIEW_RESULT_LOSS:0 "#R Loss#!"
+
+ WAR_OVERVIEW_BLOCKADED_PERCENT_TOOLTIP:0 "$NUM$ of $MAX$ ports are blockaded in @[COUNTRY.GetFlag]! [COUNTRY.GetName]"
+
+ WAR_OVERVIEW_BATTLES_WON:1 "Battles won"
+ WAR_OVERVIEW_BATTLES_LOST:1 "Battles won"
+ 
+ WAR_OVERVIEW_LOSSES_FRIENDLY_LAND_TOOLTIP:0 "#T Our Army Losses#!"
+ WAR_OVERVIEW_LOSSES_FRIENDLY_NAVAL_TOOLTIP:0 "#T Our Naval Losses#!"
+ WAR_OVERVIEW_LOSSES_ENEMY_LAND_TOOLTIP:0 "#T Enemy land Losses:#!"
+ WAR_OVERVIEW_LOSSES_ENEMY_NAVAL_TOOLTIP:0 "#T Enemy naval Losses#!"
+ WAR_OVERVIEW_LOSSES_TOOLTIP_LINE:0 "[BATTLE_SIDE.GetLosses|Y0*] lost in [BATTLE_RESULT.GetName]"

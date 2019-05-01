@@ -1,0 +1,16 @@
+﻿l_english:
+ DECLARE_WAR_ENEMY_ALLY_ALREADY_AT_WAR:0 "@[COUNTRY.GetFlag]! [COUNTRY.GetName] can NOT join the war because they are at war with @[DEFENDER.GetFlag]! [DEFENDER.GetName]"
+ DECLARE_WAR_ENEMY_TRIBUTARY_JOIN:0 "@[COUNTRY.GetFlag]! [COUNTRY.GetName] will join the war since they are a tributary of @[DEFENDER.GetFlag]! [DEFENDER.GetName]"
+ DECLARE_WAR_ENEMY_DEFENSIVE_LEAGUE_JOIN:0 "@[COUNTRY.GetFlag]! [COUNTRY.GetName] will join the war since they are in a defensive league with @[DEFENDER.GetFlag]! [DEFENDER.GetName]"
+ DECLARE_WAR_ENEMY_ALLY_JOIN:0 "@[COUNTRY.GetFlag]! [COUNTRY.GetName] will join the war since they are allied with @[DEFENDER.GetFlag]! [DEFENDER.GetName]"
+ DECLARE_WAR_ENEMY_TAKE_OVER_WAR_LEADER:0 "And they will take over as warleader since they consider themselves stronger than @[DEFENDER.GetFlag]! [DEFENDER.GetName]"
+ DECLARE_WAR_ENEMY_TAKE_OVER_WAR_LEADER_ALLIES:0 "Possible defenders joining @[COUNTRY.GetFlag]! [COUNTRY.GetName]:"
+ DECLARE_WAR_ENEMY_TAKE_OVER_WAR_LEADER_NO_ALLIES:0 "There are no additional defenders joining @[COUNTRY.GetFlag]! [COUNTRY.GetName]."
+ DECLARE_WAR_ENEMY_TAKE_OVER_WAR_LEADER_ALLY:0 "@[COUNTRY.GetFlag]! [COUNTRY.GetName] "
+ DECLARE_WAR_OVERLORD_PROTECT:0 "@[COUNTRY.GetFlag]! [COUNTRY.GetName] will protect their $SUBJECT_TYPE$ @[DEFENDER.GetFlag]! [DEFENDER.GetName]."
+ DECLARE_WAR_OVERLORD_GUARANTEE:0 "@[COUNTRY.GetFlag]! [COUNTRY.GetName] has guaranteed @[DEFENDER.GetFlag]! [DEFENDER.GetName], and will fight the war on their behalf."
+ DECLARE_WAR_CONFIRMATION_WARGOAL:0 "Declare War on @[DEFENDER.GetFlag]! [DEFENDER.GetName] using wargoal $WARGOAL|Y$"
+ DECLARE_WAR_CONFIRMATION_WARLEADER:0 "@[COUNTRY.GetFlag]! [COUNTRY.GetName] will become enemy warleader"
+ DECLARE_WAR_CONFIRMATION_STABHIT:0 "Stability effects:"
+ DECLARE_WAR_CONFIRMATION_WAREXHAUSTION:0 "War Exhaustion: #R $VAL|=-$#!"
+ 

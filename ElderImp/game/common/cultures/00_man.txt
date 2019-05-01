@@ -40,15 +40,15 @@
 	}
 	
 	culture = {
-		al-gemha = {}
-		al-hared = {}
+		al_gemha = {}
+		al_hared = {}
 		breton = {}
 		horwalli = {}
 		imperials = {}
 		keptu = {}
 		kothringi = {}
-		men-of-ge = {}
-		men-of-ket = {}
+		men_of_ge = {}
+		men_of_ket = {}
 		nedes = {}
 		nord = {}
 		orma = {}

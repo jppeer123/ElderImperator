@@ -1,0 +1,12 @@
+﻿l_english:
+ NUM_OF_ARMIES_SELECTED:0 "$NUM$ Armies Selected."
+ NUM_OF_NAVIES_SELECTED:0 "$NUM$ Navies Selected."
+ ASSAULT_ALREADY:0 "There is already an assault in progress."
+ ASSAULT_TOO_WEAK:0 "There is not infantry available in this siege to assault."
+ ASSAULT_IS_DEFENDER:0 "The defender of a siege can not order an assault."
+ ASSAULT_NOT_IN_COMMAND:0 "You are not in overall command of this siege."
+ ASSAULT_TOO_LOW_MORALE:0 "The besiegers have too low morale to do an assault."
+ ASSAULT_ORDER:1 "#T Order Assault#!\nOrdering an assault will cost $COST$.\nThis cost is due to $COST_WHY$\n\n#TF Giving an order to assault will be costly in manpower, but it may force a quick outcome of the siege.#!"
+ DISBAND_NOT_IN_COMBAT:0 "Units in combat can not not be disbanded."
+ REORGANIZE_WINDOW_TITLE:0 "Reorganize"
+ SELECT_UNIT:0 "Select this unit"

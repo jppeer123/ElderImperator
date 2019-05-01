@@ -1,0 +1,5 @@
+﻿l_english:
+ Johan_event.1.t:0 "Johans Test Event Title"
+ Johan_event.1.d:0 "[ROOT.Char.GetName] is [ROOT.Char.GetAge] years old and lives in [ROOT.Char.GetCountry.GetName]"
+ Johan_event.1.a:0 "Alea Iacta Est!"
+ 

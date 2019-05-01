@@ -1,0 +1,12 @@
+﻿l_english:
+ warfare.1.t:0 "The Sacking of [SCOPE.sP('temp_city_scope_warfare_1').GetName]"
+ warfare.1.desc:0 "[ROOT.GetCharacter.GetName] has led his men to glorious victory during the siege of [SCOPE.sP('temp_city_scope_warfare_1').GetName]. The enemy flee in disgrace, and all that is left, is to decide on how to treat the residents within.\n\nNeedless to say, the spoils of war are likely to cause those back in [ROOT.GetCharacter.GetEmployer.GetCapital.GetName] to admire [ROOT.GetCharacter.GetPraenomen] greatly, but leaving such wealth in the hands of one [ROOT.GetCharacter.GetWomanMan] could cause problems in future..."
+ warfare.1.a:0 "Let the looting be gentle."
+ warfare.1.b:0 "Let the men roam freely!"
+ warfare.1.c:0 "None shall hide!"
+ warfare.1.d:0 "[SCOPE.sP('temp_city_scope_warfare_1').GetName] Delenda Est!"
+ warfare.2.t:0 "[SCOPE.sP('temp_city_scope_warfare_1').GetName] Pillaged!"
+ warfare.2.desc:0 "After the siege of [SCOPE.sP('temp_city_scope_warfare_1').GetName], [SCOPE.sChar('siege_instigator').GetName] let [SCOPE.sChar('siege_instigator').HerHis] troops run riot, resulting in murder, rape, and theft. The wealth that [SCOPE.sChar('siege_instigator').GetPraenomen] has gained from this evil act is beyond compare, and our advisors suggest that [SCOPE.sChar('siege_instigator').GetSheHe] is now one of the richest people in our land. Even deserters previously resident in [SCOPE.sP('temp_city_scope_warfare_1').GetName] are flocking to join [SCOPE.sChar('siege_instigator').GetPraenomen].\n\nDespite [SCOPE.sChar('siege_instigator').GetHerHis] popular acclaim, we should consider punishing [SCOPE.sChar('siege_instigator').GetHerHim] for these dastardly actions."
+ warfare.2.a:0 "No. Let it go."
+ warfare.2.b:0 "Insist on an oath of allegiance."
+ warfare.2.c:0 "Demand that wealth is split with the army!"
