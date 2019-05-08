@@ -1,0 +1,16 @@
+﻿freemen = {
+	commerce_value = 0.03
+	tax_income = 0.01
+	local_manpower = 0.01
+
+	can_promote_to = citizen
+	demotes_to = slaves
+	
+	conquest_demote_chance = 50
+	
+	base_happyness = 0.25
+	
+	color = hsv { 0.15  1  0.7 }
+	
+	ai_max_percentage = 35
+}

@@ -1,0 +1,20 @@
+mages = {	
+	research_points = 0.3
+	commerce_value = 0.02
+	tax_income = 0.01
+
+	demotes_to = citizen
+	
+	conquest_demote_chance = 0
+	
+	base_happyness = 0.2
+	
+	score = yes
+	
+	color = hsv { 0.65  0.2  0.8 }
+	
+	ai_max_percentage = 10
+}
+
+
+

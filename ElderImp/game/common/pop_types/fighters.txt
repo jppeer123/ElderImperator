@@ -1,0 +1,20 @@
+fighters = {
+	tax_income = 0.01
+	local_manpower = 0.1
+	
+
+	demotes_to = freemen
+	
+	conquest_demote_chance = 0
+	
+	base_happyness = 0.2
+	
+	score = yes
+	
+	color = hsv { 0.65  0.2  0.8 }
+	
+	ai_max_percentage = 10
+}
+
+
+
