@@ -1,0 +1,19 @@
+pdxmesh = {
+	name = "imperial_city_mesh"
+	file = "ImperialCity.mesh"
+
+	meshsettings = {
+		name = "Imperial_City_LOD0Shape"
+		index = 0
+		texture_diffuse = "ImperialCity_Diffuse.dds"
+		texture_normal = "ImperialCity_Normal.dds"
+		texture_specular = "ImperialCity_Properties.dds"
+		shader = "standard"
+		shader_file = "gfx/FX/pdxmesh.shader"
+	}
+}
+
+entity = {
+	name = "imperial_city_entity"
+	pdxmesh = "imperial_city_mesh"
+}
