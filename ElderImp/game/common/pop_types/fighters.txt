@@ -11,7 +11,7 @@ fighters = {
 	
 	score = yes
 	
-	color = hsv { 0.65  0.2  0.8 }
+	color = hsv { 0  1  1 }
 	
 	ai_max_percentage = 10
 }

@@ -1,0 +1,39 @@
+﻿freemen = {
+	base = pops_in_province
+	conditions = { pop_type = freemen }
+}
+
+citizen = {
+	base = pops_in_province
+	conditions = { pop_type = citizen }
+}
+
+tribesmen = {
+	base = pops_in_province
+	conditions = { pop_type = tribesmen }
+}
+
+slaves = {
+	base = pops_in_province
+	conditions = { pop_type = slaves }
+}
+
+mages = {
+	base = pops_in_province
+	conditions = { pop_type = mages }
+}
+
+fighters = {
+	base = pops_in_province
+	conditions = { pop_type = fighters }
+}
+
+merchants = {
+	base = pops_in_province
+	conditions = { pop_type = merchants }
+}
+
+rogues = {
+	base = pops_in_province
+	conditions = { pop_type = rogues }
+}

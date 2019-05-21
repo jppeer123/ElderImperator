@@ -1,0 +1,277 @@
+promote_mages = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:mages_policy = 2
+		}
+		civic_power >= 100
+	}
+
+	effect = {
+		set_variable = {
+			name = mages_policy
+			value = 2
+		}
+		add_civic_power = -100
+		custom_tooltip = tes_tooltip_mages_policy_2
+	}
+}
+
+neutral_mages = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:mages_policy = 1
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = mages_policy
+			value = 1
+		}
+		custom_tooltip = tes_tooltip_mages_policy_1
+	}
+}
+
+demote_mages = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:mages_policy = 0
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = mages_policy
+			value = 0
+		}
+		custom_tooltip = tes_tooltip_mages_policy_0
+	}
+}
+
+promote_merchants = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:merchants_policy = 2
+		}
+		civic_power >= 50
+	}
+
+	effect = {
+		set_variable = {
+			name = merchants_policy
+			value = 2
+		}
+		add_civic_power = -50
+		custom_tooltip = tes_tooltip_merchants_policy_2
+	}
+}
+
+neutral_merchants = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:merchants_policy = 1
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = merchants_policy
+			value = 1
+		}
+		custom_tooltip = tes_tooltip_merchants_policy_1
+	}
+}
+
+demote_merchants = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:merchants_policy = 0
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = merchants_policy
+			value = 0
+		}
+		custom_tooltip = tes_tooltip_merchants_policy_0
+	}
+}
+
+promote_fighters = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:fighters_policy = 2
+		}
+		civic_power >= 50
+	}
+
+	effect = {
+		set_variable = {
+			name = fighters_policy
+			value = 2
+		}
+		add_civic_power = -50
+		custom_tooltip = tes_tooltip_fighters_policy_2
+	}
+}
+
+neutral_fighters = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:fighters_policy = 1
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = fighters_policy
+			value = 1
+		}
+		custom_tooltip = tes_tooltip_fighters_policy_1
+	}
+}
+
+demote_fighters = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:fighters_policy = 0
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = fighters_policy
+			value = 0
+		}
+		custom_tooltip = tes_tooltip_fighters_policy_0
+	}
+}
+
+promote_rogues = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:rogues_policy = 2
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = rogues_policy
+			value = 2
+		}
+		custom_tooltip = tes_tooltip_rogues_policy_2
+	}
+}
+
+neutral_rogues = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:rogues_policy = 1
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = rogues_policy
+			value = 1
+		}
+		custom_tooltip = tes_tooltip_rogues_policy_1
+	}
+}
+
+demote_rogues = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:rogues_policy = 0
+		}
+		military_power >= 100
+	}
+
+	effect = {
+		set_variable = {
+			name = rogues_policy
+			value = 0
+		}
+		add_military_power = -100
+		custom_tooltip = tes_tooltip_rogues_policy_0
+	}
+}
+
+slave_resettlement_none = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:slaves_policy = 0
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = slaves_policy
+			value = 0
+		}
+		custom_tooltip = tes_tooltip_slaves_policy_0
+	}
+}
+
+slave_resettlement_home = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:slaves_policy = 1
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = slaves_policy
+			value = 1
+		}
+		custom_tooltip = tes_tooltip_slaves_policy_1
+	}
+}
+
+slave_resettlement_full = {
+	scope = country
+
+	is_valid = {
+		NOT = {
+			var:slaves_policy = 2
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = slaves_policy
+			value = 2
+		}
+		custom_tooltip = tes_tooltip_slaves_policy_2
+	}
+}

@@ -1,0 +1,232 @@
+﻿appoint_dictator = {
+	military = 50
+	religious = 50
+}
+
+
+hold_triumph = {
+	military = 20
+	religious = 20
+}
+
+hold_games_price = {
+	scaled_gold = 4.2 #scaled_gold = monthly income, so 420% of monthly income
+}
+
+smear_character = {
+	oratory = 25
+}
+
+bribe_character = {
+	oratory = 20
+}
+
+assassinate_attempt = {
+	military = 200
+}
+
+inspire_disloyalty = {
+	oratory = 50
+}
+
+build_roads = {
+	military = 10
+}
+
+build_expensive_roads = {
+	military = 20
+}
+
+recover = {
+	military = 5
+}
+
+raid = {
+	military = 25
+}
+
+naval_raid = {
+	military = 25
+}
+
+use_ramming_speed = {
+	military = 5
+}
+
+use_boarding_tactics = {
+	military = 5
+}
+
+freemen_promotion = {
+	oratory = 10
+}
+
+citizen_promotion = {
+	oratory = 30
+}
+
+
+citizen_move = {
+	civic = 100
+}
+
+freemen_move = {
+	civic = 50
+}
+
+tribesmen_move = {
+	civic = 20
+}
+
+slaves_move = {
+	civic = 5
+}
+
+fighters_move = {
+	civic = 50
+}
+
+mages_move = {
+	civic = 150
+}
+
+merchants_move = {
+	civic = 100
+}
+
+rogues_move = {
+	military = 100
+}
+
+desecrate = {
+	military = 20
+}
+
+build_border_fort = {
+	military = 40
+	manpower = 2
+}
+
+create_military_colony = {
+	military = 20
+	manpower = 2
+}
+
+use_cavalry_skirmish = {
+	military = 5
+}
+
+use_padma_vyuha = {
+	military = 5
+}
+
+use_greek_phalanx = {
+	military = 5
+}
+
+use_triplex_acies = {
+	military = 5
+}
+
+raise_levies = {
+	military = 50
+}
+
+recruit_character = {
+	oratory = 50
+}
+
+recruit_general = {
+	military = 200
+}
+
+secude_governor = {
+	oratory = 500
+}
+price_imprison = {
+	oratory = 100
+}
+price_execute = {
+	religious = 20
+}
+price_sacrifice = {
+	religious = 25
+}
+
+subject_pays_tributary = {
+	scaled_gold = 0.15 #scaled_gold = monthly income, so 15% your monthly income - Used to be 1/5 monthly income, but rounded from 1/(5*12)
+	
+	# gold = 10.0
+	# manpower = 20
+	# scaled_manpower = 0.1
+	
+	# military = 20
+	# civic = 20
+	# oratory = 20
+	# religious = 20
+}
+
+subject_pays_feudatory = {
+	scaled_manpower = 0.15 #15%
+}
+
+subject_pays_vassal = {
+	scaled_manpower = 0.15 #15%
+}
+
+subject_pays_satrapy = {
+	scaled_gold = 0.25 #scaled_gold = monthly income, so 25% of monthly income
+}
+
+subject_client_state_pays = {
+	scaled_gold = 0.25
+}
+
+price_convert_religion = {
+	religious = 25
+}
+
+price_propose_marriage = {
+	oratory = 25
+	religious = 25
+}
+
+price_add_rival = {
+	oratory = 25
+	military = 25
+}
+
+price_remove_rival = {
+	religious = 25
+}
+
+price_befriend = {
+	religious = 25
+	oratory = 25
+}
+
+price_support_primary_heir = {
+	oratory = 25
+}
+
+price_grant_laurels = {
+	oratory = 25
+	religious = 25
+}
+
+price_tutor_heir = {
+	oratory = 100
+}
+
+price_stipends = {
+	oratory = 50
+}
+
+price_arena_match = {
+	oratory = 25
+	military = 25
+}
+
+price_reward_veterans = {
+	oratory = 50
+}

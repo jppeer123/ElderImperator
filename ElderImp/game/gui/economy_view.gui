@@ -1,0 +1,881 @@
+types economy_types {
+	type policy_button = container {
+		tooltip = "[EconomicPolicyGlue.GetTooltip]"
+
+		sort_button_policy = {
+			block "transparency" {}
+
+			size = { 38 40 }
+			
+			enabled = "[EconomicPolicyGlue.CanClick]"
+			down = "[EconomicPolicyGlue.IsSelected]"
+			onclick = "[EconomicPolicyGlue.OnClick]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+			oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+			
+			icon = {
+				name = "icon"
+				texture = "gfx/interface/economy/economy_policy_icon.dds"
+				framesize = { 50 50 }
+				size = { 28 28 }
+				position = { 6 5 }
+				frame = "[EconomicPolicyGlue.GetIconFrame]"
+			}
+		}
+		
+		widget = {
+			position = { 0 40 }
+			size = { 8 8 }
+		}
+	}
+}
+
+window = {
+	gfxtype = windowgfx
+	name = "economy_view"
+	parentanchor = top|left
+	size = { 700 814 }
+	position = { 5 120 }
+	widgetanchor = top|left
+	movable = no
+	
+	widget = {
+		name = "background"
+		using = Large_window_type
+		size = { 100% 100% }
+		alwaystransparent = yes
+		
+		blockoverride "header"
+		{
+			text = "ECONOMY_MENU_HEADER"
+			tooltip = "ECONOMY_MENU_HEADER_TT"
+		}
+	}
+	
+	square_close_button = {
+		name = "close_button"
+		position = { -12 12 }
+		parentanchor = top|right
+		shortcut = "close_window"
+		onclick = "[EconomyView.OnClose]"
+		tooltip = "CLOSE"
+	}
+	
+	left_arrow_button = {
+		name = "previous_button"
+		position = { 144 14 }
+		parentanchor = top|left
+		shortcut = "previous_window"
+		onclick = "[EconomyView.OnPrevious]"
+		tooltip = "PREVIOUS_ECONOMY_VIEW"
+	}
+	
+	container = {
+		name = "Balance"
+		position = { 52 67 }
+		
+		tooltip = "BALANCE_TOOLTIP"
+		
+		icon = {
+			name = "frame"
+			using = inset_frame
+			size = { 593 50 }
+		}
+		
+		textbox = {
+			parentanchor = center
+			autoresize = yes
+			using = MarbleButtonFontL
+			text = "[EconomyView.GetBalance]@gold!"
+			align = hcenter|nobaseline
+		}
+	}
+	container = { 
+		position = { 0 117 }
+
+		DefaultHeaderBackground = {
+			position = { 47 0 }
+			size = { 300 46 }
+			
+			blockoverride "text"
+			{
+				text = "INCOMES_HEADER"
+				tooltip = "INCOMES_HEADER_TT"
+			}
+
+			textbox = {
+				position = { -9 -3 }
+				parentanchor = vcenter|right
+				widgetanchor = vcenter|right
+				autoresize = yes
+				using = MarbleButtonFont
+				text = "#g +#![EconomyView.GetTotalIncome|+2]@gold!"
+			}
+		}
+		dynamicgridbox = {
+			name = "income_grid"
+			position = { 52 47 }
+			size = { 180 200 }
+			datamodel = "[EconomyView.GetIncome]"
+			
+			item = {
+				container = {
+					ignoreinvisible = yes
+					alpha_recursive = "[TransparentIfZero(IncomeItem.GetValue)]"
+					
+					container = {
+						tooltip = "[IncomeItem.GetTooltip]"
+						icon = {
+							name = "frame"
+							texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+							spriteType = Corneredtiled
+							spriteborder = { 12 12 }
+							size = { 290 30 }
+						}
+						
+						textbox = {
+							position = { 7 1 }
+							autoresize = yes
+							using = MarbleButtonFont
+							text = "[IncomeItem.GetName]"
+						
+						}
+						
+						textbox = {
+							position = { 284 12 }
+							autoresize = no
+							using = MarbleButtonFont
+							text = "[IncomeItem.GetValue|2]@gold!"
+							
+							align = right
+						}
+					}
+					
+					icon = {
+						position = { 170 32 }
+						size = { 120 36 }
+						texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+						spriteType = Corneredtiled
+						spriteborder = { 28 20 }
+						tooltip = "[IncomeItem.GetModifierTooltip]"
+						
+						icon = {
+							name = "icon"
+							position = { 6 3 }
+							size = { 30 30 }
+							texture = "[IncomeItem.GetModifierIcon]"
+						}
+						
+						textbox = {
+							name = "value"
+							size = { 40 20 }
+							position = { -4 5 }
+							multiline = no
+							using = MarbleButtonFontM
+							text = "[IncomeItem.GetModifierValue]"
+							widgetanchor = top|right
+							parentanchor = top|right
+							align = right
+						}
+					}
+					
+					dynamicgridbox = {
+						position = { 0 32 }
+						datamodel = "[IncomeItem.GetPolicies]"
+						flipdirection = yes
+						item = {
+							policy_button = {
+								blockoverride "transparency" {
+									alpha_recursive = "[TransparentIfZero(IncomeItem.GetValue)]"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		DefaultHeaderBackground = {
+			position = { 47 280 }
+			size = { 300 46 }
+			
+			blockoverride "text"
+			{
+				text = "POP_POLICIES_HEADER"
+				tooltip = "POP_POLICIES_HEADER_TT"
+			}
+		}
+		container = {
+			position = { 52 327 }
+			
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 0 0 }
+					datacontext = "[GetScriptedGui('promote_mages')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_mages
+						#position = { 0 0 }
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_plus
+						position = { -5 0 }
+						size = { 30 30 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 0 50 }
+					datacontext = "[GetScriptedGui('neutral_mages')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_mages
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_loyalty
+						position = { 0 0 }
+						size = { 20 20 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 0 100 }
+					datacontext = "[GetScriptedGui('demote_mages')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_mages
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_locked
+						position = { 0 0 }
+						size = { 20 20 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 50 0 }
+					datacontext = "[GetScriptedGui('promote_merchants')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_merchants
+						#position = { 8 6 }
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_plus
+						position = { -5 0 }
+						size = { 30 30 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 50 50 }
+					datacontext = "[GetScriptedGui('neutral_merchants')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_merchants
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_loyalty
+						position = { 0 0 }
+						size = { 20 20 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 50 100 }
+					datacontext = "[GetScriptedGui('demote_merchants')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_merchants
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_locked
+						position = { 0 0 }
+						size = { 20 20 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 100 0 }
+					datacontext = "[GetScriptedGui('promote_fighters')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_fighters
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_plus
+						position = { -5 0 }
+						size = { 30 30 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 100 50 }
+					datacontext = "[GetScriptedGui('neutral_fighters')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_fighters
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_loyalty
+						position = { 0 0 }
+						size = { 20 20 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 100 100 }
+					datacontext = "[GetScriptedGui('demote_fighters')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_fighters
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_locked
+						position = { 0 0 }
+						size = { 20 20 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 150 0 }
+					datacontext = "[GetScriptedGui('promote_rogues')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_rogues
+						#position = { 8 6 }
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_plus
+						position = { -5 0 }
+						size = { 30 30 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 150 50 }
+					datacontext = "[GetScriptedGui('neutral_rogues')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_rogues
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_loyalty
+						position = { 0 0 }
+						size = { 20 20 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 150 100 }
+					datacontext = "[GetScriptedGui('demote_rogues')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_rogues
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_locked
+						position = { 0 0 }
+						size = { 20 20 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 0 150 }
+					datacontext = "[GetScriptedGui('slave_resettlement_none')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_slaves
+						#position = { 8 6 }
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_plus
+						position = { -5 0 }
+						size = { 30 30 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 50 150 }
+					datacontext = "[GetScriptedGui('slave_resettlement_home')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_slaves
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_loyalty
+						position = { 0 0 }
+						size = { 20 20 }
+						parentanchor = top|right
+					}
+				}
+			button = {
+					texture = "gfx/interface/buttons/button_square_42.dds"
+					size = { 50 50 }
+					position = { 100 150 }
+					datacontext = "[GetScriptedGui('slave_resettlement_full')"
+					enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(EconomyView.GetPlayer.MakeScope).End)]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_pop_slaves
+						size = { 40 40 }
+						parentanchor = center
+					}
+					icon = {
+						using = icon_locked
+						position = { 0 0 }
+						size = { 20 20 }
+						parentanchor = top|right
+					}
+				}
+		}
+		DefaultHeaderBackground = {
+				position = { 350 0 }
+			size = { 300 46 }
+			
+			blockoverride "text"
+			{
+				text = "EXPENSES_HEADER"
+				tooltip = "EXPENSES_HEADER_TT"
+			}
+
+			textbox = {
+				position = { -9 -3 }
+				parentanchor = vcenter|right
+				widgetanchor = vcenter|right
+				autoresize = yes
+				using = MarbleButtonFont
+				text = "#r -#![EconomyView.GetTotalExpense|-2]@gold!"
+			}
+		}
+		dynamicgridbox = {
+			name = "expense_grid"
+			position = { 354 47 }
+			size = { 180 200 }
+			datamodel = "[EconomyView.GetExpense]"
+			
+			item = {
+				container = {
+					ignoreinvisible = yes
+					alpha_recursive = "[TransparentIfZero(ExpenseItem.GetValue)]"
+
+					container = {
+						tooltip = "[ExpenseItem.GetTooltip]"
+						icon = {
+							name = "frame"
+							texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+							spriteType = Corneredtiled
+							spriteborder = { 12 12 }
+							size = { 290 30 }
+						}
+						textbox = {
+							position = { 7 1 }
+							autoresize = yes
+							using = MarbleButtonFont
+							text = "[ExpenseItem.GetName]"
+						
+						}
+						
+						textbox = {
+							position = { 284 12 }
+							
+							using = MarbleButtonFont
+							text = "[ExpenseItem.GetValue|2]@gold!"
+							align = right
+						}
+					}
+					
+					icon = {
+						position = { 170 32 }
+						size = { 120 36 }
+						texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+						spriteType = Corneredtiled
+						spriteborder = { 28 20 }
+						visible = "[ExpenseItem.HasModifier]"
+						tooltip = "[ExpenseItem.GetModifierTooltip]"
+						
+						icon = {
+							name = "icon"
+							position = { 6 3 }
+							size = { 30 30 }
+							texture = "[ExpenseItem.GetModifierIcon]"
+						}
+						
+						textbox = {
+							name = "value"
+							size = { 40 20 }
+							position = { -4 5 }
+							multiline = no
+							using = MarbleButtonFontM
+							text = "[ExpenseItem.GetModifierValue]"
+							widgetanchor = top|right
+							parentanchor = top|right
+							align = right
+						}
+					}
+
+					dynamicgridbox = {
+						position = { 0 32 }
+						datamodel = "[ExpenseItem.GetPolicies]"
+						flipdirection = yes
+						
+						item = {
+							policy_button = {
+								blockoverride "transparency" {
+									alpha_recursive = "[TransparentIfZero(ExpenseItem.GetValue)]"
+								}
+							}
+						}
+					}
+				
+				}
+			}
+		}
+		DefaultHeaderBackground = {
+				position = { 350 397 }
+			size = { 300 46 }
+			
+			blockoverride "text"
+			{
+				text = "CONVERT_HEADER"
+				tooltip = "CONVERT_HEADER_TT"
+			}
+		}
+		container = {
+				position = { 580 397 }
+			tooltip = "[EconomyView.GetPlayer.GetNumPowerConversionsInfo]"
+			
+			
+			
+			textbox = {
+				position = { 10 10 }
+				size = { 50 20 }
+				using = MarbleButtonFont
+				text = "[EconomyView.GetPlayer.GetModifierValue('power_conversion_cost_modifier')]"
+				parentanchor = top|hcenter
+				align = right
+			}
+		}
+		container = {
+				position = { 345 444 }
+			alwaystransparent = yes
+			
+			flowcontainer = {
+				position = { 90 0 }
+				direction = vertical
+				
+				button = {
+					spriteborder = { 60 0 }
+					spriteType = Corneredtiled
+					texture = "gfx/interface/buttons/button_icon_button_base.dds"
+					size = { 120 50 }
+					
+					tooltip = "[EconomyView.GetGoldToPowerInfo('military')]"
+					enabled = "[EconomyView.CanGoldToPower('military')]"
+					onclick = "[EconomyView.OnGoldToPower('military')]"
+					clicksound = "event:/SFX/UI/Actions/sfx_ui_action_convert_currency"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_treasury
+						position = { 8 6 }
+						size = { 36 36 }
+					}
+					
+					icon = {
+						using = icon_arrow_right
+						position = { 42 6 }
+						size = { 36 36 }
+					}
+					
+					icon = {
+						using = icon_military
+						position = { 78 6 }
+						size = { 36 36 }
+					}
+				}
+				
+				widget = {
+					size = { 4 7 }
+				}
+				
+				button = {
+					spriteborder = { 60 0 }
+					spriteType = Corneredtiled
+					texture = "gfx/interface/buttons/button_icon_button_base.dds"
+					size = { 120 50 }
+					
+					tooltip = "[EconomyView.GetGoldToPowerInfo('civic')]"
+					enabled = "[EconomyView.CanGoldToPower('civic')]"
+					onclick = "[EconomyView.OnGoldToPower('civic')]"
+					clicksound = "event:/SFX/UI/Actions/sfx_ui_action_convert_currency"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_treasury
+						position = { 8 6 }
+						size = { 36 36 }
+					}
+					
+					icon = {
+						using = icon_arrow_right
+						position = { 42 6 }
+						size = { 36 36 }
+					}
+					
+					icon = {
+						using = icon_civic
+						position = { 78 6 }
+						size = { 36 36 }
+					}
+				}
+				
+				widget = {
+					size = { 4 7 }
+				}
+				
+				button = {
+					spriteborder = { 60 0 }
+					spriteType = Corneredtiled
+					texture = "gfx/interface/buttons/button_icon_button_base.dds"
+					size = { 120 50 }
+					
+					tooltip = "[EconomyView.GetGoldToPowerInfo('oratory')]"
+					enabled = "[EconomyView.CanGoldToPower('oratory')]"
+					onclick = "[EconomyView.OnGoldToPower('oratory')]"
+					clicksound = "event:/SFX/UI/Actions/sfx_ui_action_convert_currency"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_treasury
+						position = { 8 6 }
+						size = { 36 36 }
+					}
+					
+					icon = {
+						using = icon_arrow_right
+						position = { 42 6 }
+						size = { 36 36 }
+					}
+					
+					icon = {
+						using = icon_oratory
+						position = { 75 6 }
+						size = { 36 36 }
+					}
+				}
+				
+				widget = {
+					size = { 4 7 }
+				}
+				
+				button = {
+					spriteborder = { 60 0 }
+					spriteType = Corneredtiled
+					texture = "gfx/interface/buttons/button_icon_button_base.dds"
+					size = { 120 50 }
+					
+					tooltip = "[EconomyView.GetGoldToPowerInfo('religious')]"
+					enabled = "[EconomyView.CanGoldToPower('religious')]"
+					onclick = "[EconomyView.OnGoldToPower('religious')]"
+					clicksound = "event:/SFX/UI/Actions/sfx_ui_action_convert_currency"
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+					
+					icon = {
+						using = icon_treasury
+						position = { 8 6 }
+						size = { 36 36 }
+					}
+					
+					icon = {
+						using = icon_arrow_right
+						position = { 42 6 }
+						size = { 36 36 }
+					}
+					
+					icon = {
+						using = icon_religious
+						position = { 78 6 }
+						size = { 36 36 }
+					}
+				}
+			}
+		}
+		icon = {
+			size = { 290 100 }
+			position = { 52 572 }
+			texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 10 10 }
+			
+			container = {
+				visible = "[EconomyView.HasDeficit]"
+				tooltip = "[EconomyView.GetDeficitTooltip]"
+				parentanchor = center
+				position = { 0 -10 }
+
+				icon = {
+					position = { 0 12 }
+					using = icon_bankruptcy
+					widgetanchor = top|hcenter
+					parentanchor = top|hcenter
+				}
+				
+				textbox = {
+					position = { 0 52 }
+					autoresize = yes
+					using = MarbleButtonFont
+					text = "[EconomyView.GetDeficitEffect]"
+				}
+			}
+			container = {
+				visible = "[Not(EconomyView.HasDeficit)]"
+				tooltip = "[EconomyView.GetNoDeficitTooltip]"
+				parentanchor = center
+				
+				icon = {
+					position = { 0 12 }
+					using = icon_treasury
+					widgetanchor = top|hcenter
+					parentanchor = top|hcenter
+				}
+
+				textbox = {
+					position = { 10 12 }
+					size = { 290 120 }
+					using = MarbleButtonFont
+					align = center
+					text = "NO_DEFICIT_TEXT"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,1104 @@
+window = {
+	gfxtype = windowgfx
+	name = "overview_view"
+	
+	parentanchor = top|left
+	size = { 1060 860 }
+	position = { 5 120 }
+	widgetanchor = top|left
+	movable = no
+	
+	widget = {
+		name = "background"
+		using = Large_window_type
+		size = { 100% 100% }
+		alwaystransparent = yes
+		
+		blockoverride "header"
+		{
+			text = "[OverviewView.GetPlayer.GetGovernment.GetName]"
+			#tooltip = "[OverviewView.GetPlayer.GetGovernment.GetTooltip]"
+			tooltip = "NATION_OVERVIEW_MENU_HEADER_TT"
+		}
+	}
+	
+	square_close_button = {
+		name = "close_button"
+		position = { -12 12 }
+		parentanchor = top|right
+		shortcut = "close_window"
+		onclick = "[OverviewView.OnClose]"
+		tooltip = "CLOSE"
+	}
+	
+	left_arrow_button = {
+		name = "previous_button"
+		position = { 264 14 }
+		parentanchor = top|left
+		shortcut = "previous_window"
+		onclick = "[OverviewView.OnPrevious]"
+		tooltip = "PREVIOUS_OVERVIEW_VIEW"
+	}
+	
+	
+	container = {
+		position = { 45 60 }
+		
+		DefaultHeaderBackground = {
+			name = "province_header"
+			position = { 42 2 }
+			size = { 1050 46 }
+			
+			blockoverride "text"
+			{
+				text = "[OverviewView.GetPlayer.GetName]"
+				datacontext = "[OverviewView]"
+				tooltip = "OVERVIEW_COUNTRY_NAME"
+			}
+		}
+		
+		textbox = {
+			size = { 300 24 }
+			using = BlackMarbleFont
+			text = "[OverviewView.GetPlayer.GetPrimaryCulture.GetName]"
+			tooltip = "[OverviewView.GetPlayer.GetPrimaryCulture.GetTooltip]"
+			align = right
+			position = { 536 10 }
+		}
+		
+		icon = {
+			position = { 0 -5 }
+			framesize = { 54 54 }
+			texture = "gfx/interface/diplomacy/country_rank.dds"
+			frame = "[OverviewView.GetPlayer.GetRankFrame]"
+			tooltip = "[OverviewView.GetPlayer.GetRankInformation]"
+		}
+	}
+	
+	
+	portrait_button = {
+		using = portrait_100_no_pop
+		name = "player_portrait"
+		position = { 50 102 }
+		parentanchor = top|left
+		datacontext = "[OverviewView.GetPlayer.GetRuler]"
+	}
+	
+	icon = {
+		name = "Civilization"
+		position = { 188 149 }
+		size = { 112 32 }
+		texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 28 20 }
+		
+		tooltip = "[OverviewView.GetPlayer.GetModifierTooltip('country_civilization_value')]"
+		
+		icon = {
+			position = { 2 0 }
+			size = { 30 30 }
+			using = icon_civilization
+		}
+		
+		textbox = {
+			name = "civilization_value"
+			autoresize = yes
+			position = { 68 1 }
+			multiline = no
+			using = MarbleButtonFont
+			text = "[OverviewView.GetPlayer.GetModifierValue('country_civilization_value')]"
+			widgetanchor = top|hcenter
+			align = center
+		}
+	}
+	
+	icon = {
+		name = "Cities"
+		position = { 306 149 }
+		size = { 72 32 }
+		texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 28 20 }
+		
+		tooltip = "[OverviewView.GetPlayer.GetOwnedProvinceTooltip]"
+		
+		icon = {
+			position = { 3 1 }
+			size = { 28 28 }
+			using = icon_city
+		}
+		
+		textbox = {
+			name = "cities_value"
+			autoresize = yes
+			position = { 48 1 }
+			multiline = no
+			using = MarbleButtonFont
+			text = "[OverviewView.GetPlayer.GetOwnedProvinceCount]"
+			widgetanchor = top|hcenter
+			align = center
+		}
+	}
+	
+	icon = {
+		name = "Population"
+		position = { 384 149 }
+		size = { 92 32 }
+		texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 28 20 }
+		
+		tooltip = "[OverviewView.GetPlayer.BuildTotalPopulationToolTip]"
+		
+		icon = {
+			position = { 3 1 }
+			size = { 28 28 }
+			using = icon_population
+		}
+		
+		textbox = {
+			name = "population_value"
+			autoresize = yes
+			position = { 58 1 }
+			multiline = no
+			using = MarbleButtonFont
+			text = "[OverviewView.GetPlayer.GetTotalPopulation]"
+			widgetanchor = top|hcenter
+			align = center
+		}
+	}
+	
+	icon = {
+		name = "Aggressive Expansion"
+		position = { 482 149 }
+		size = { 92 32 }
+		texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 28 20 }
+		alpha_recursive = "[TransparentIfZero(OverviewView.GetPlayer.GetCurrentAgressiveExpansion)]"
+		
+		tooltip = "[OverviewView.GetPlayer.GetCurrentAgressiveExpansionInfo]"
+		
+		icon = {
+			position = { 3 1 }
+			size = { 28 28 }
+			using = icon_aggressive_expansion
+		}
+		
+		textbox = {
+			name = "aggressive_expansion_value"
+			autoresize = yes
+			position = { 50 1 }
+			multiline = no
+			using = MarbleButtonFont
+			text = "[OverviewView.GetPlayer.GetCurrentAgressiveExpansion]"
+			widgetanchor = top|hcenter
+			align = center
+		}
+	}
+	
+	widget = {
+		size = { 697 110 }
+		position = { 188 187 }
+		hbox = {
+			fixedgridbox = {
+				name = "ideas_grid"
+				flipdirection = yes
+				size = { 480 160 }
+				addcolumn = 82
+				addrow = 110
+				maxhorizontalslots = 4
+				maxverticalslots = 1
+				
+				item = {
+					container = {
+						datacontext = "[IdeaItem.GetIdea]"
+						
+						icon = {
+							size = { 76 110 }
+							texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+							spriteType = Corneredtiled
+							spriteborder = { 28 20 }
+						}
+						
+						button = {
+							visible = "[IdeaItem.IsValid]"
+							size = { 64 64 }
+							position = { 6 40 }
+							texture = "[IdeaItem.GetIcon]"
+							tooltip = IDEA_TOOLTIP
+							onclick = "[IdeaItem.OpenSelection]"
+						}
+						
+						button = {
+							visible = "[Not(IdeaItem.IsValid)]"
+							texture = "gfx/interface/icons/ideas/empty.dds"
+							onclick = "[IdeaItem.OpenSelection]"
+							clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+							oversound = "event:/SFX/UI/Generic/sfx_ui_generic_mouse_over"
+							tooltip = "SELECT"
+							position = { 5 40 }
+							size = { 64 64 }
+						}
+						
+						icon = {
+							name = "overlay"
+							position = { 0 4 }
+							texture = "[IdeaItem.GetGroupTexture]"
+							size = { 32 32 }
+							parentanchor = top|hcenter
+							tooltip = "[IdeaItem.GetGroupMatchingTooltip]"
+						}
+						
+						icon = {
+							visible = "[IdeaItem.IsMisMatch]"
+							name = "mismatch_overlay_cross"
+							position = { 44 22 }
+							texture = "gfx/interface/icons/font_icons/font_icon_cross.dds"
+							size = { 16 16 }
+							tooltip = "IDEA_MISMATCH"
+						}
+					}
+				}
+			}
+			
+			widget = {
+				size = { 300 110 }
+				layoutpolicy_horizontal = preferred
+				icon = {
+					texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+					spriteType = Corneredtiled
+					spriteborder = { 28 20 }
+					size = { 100% 110 }
+				}
+				
+				icon = {
+					position = { 20 0 }
+					name = "has_bonus"
+					texture = "gfx/interface/icons/shared_icons/tick_cross.dds"
+					frame = "[OverviewView.GetGovBonusFrame]"
+					framesize = { 25 25 }
+					parentanchor = vcenter|left
+					widgetanchor = vcenter|left
+					tooltip = "[OverviewView.GetGovBonusTooltip]"
+					size = { 30 30 }
+				}
+				
+				textbox = {
+					position = { 60 0 }
+					widgetanchor = left|vcenter
+					parentanchor = left|vcenter
+					autoresize = yes
+					using = MarbleButtonFontS
+					text = "[OverviewView.GetPlayer.GetGovernment.GetBonusDescription]"
+					tooltip = [OverviewView.GetGovBonusTooltip]
+				}
+			}
+		}
+	}
+	
+	######################################
+	# Temporary Country Modifiers
+	######################################
+	textbox = {
+		position = { -54 126 }
+		autoresize = yes
+		using = MarbleButtonFontS
+		parentanchor = top|right
+		widgetanchor = top|right
+		text = "COUNTRY_MODIFIERS"
+	}
+	
+	margin_widget = {
+		size = { 306 32 }
+		position = { 580 149 }
+		margin = { 4 0 }
+		
+		background = {
+			texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 10 10 }
+			shaderfile = "gfx/FX/pdxgui_default.shader"
+		}
+		
+		overlappingitembox = {
+			datamodel = "[OverviewView.GetCountryModifiers]"
+			size = { 298 30 }
+			spacing = 1
+			
+			item = {
+				modifier_icon = {
+					datacontext = "[TimedModifier.GetModifier]"
+					tooltip = "[TimedModifier.GetTooltip]"
+				}
+			}
+		}
+	}
+	
+	textbox = {
+		position = { 191 113 }
+		size = { 306 24 }
+		using = MarbleButtonFontL
+		text = "[OverviewView.GetPlayer.GetRuler.GetName]" 
+		tooltip = "[OverviewView.GetPlayer.GetRuler.GetPortraitTooltip]"
+	}
+	
+	flowcontainer = {
+		position = { 54 303 }
+		direction = vertical
+		icon = {
+			name = "Popularity"
+			size = { 130 32 }
+			texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 28 20 }
+			tooltip = "[OverviewView.GetRulerPopularityToolTip]"
+			
+			icon = {
+				position = { 4 1 }
+				size = { 28 28 }
+				using = icon_popularity
+			}
+			
+			textbox = {
+				name = "Popularity_value"
+				position = { 67 3 }
+				size = { 90 20 }
+				multiline = no
+				using = MarbleButtonFontM
+				text = "[OverviewView.GetPlayer.GetRuler.GetPopularity|/0]"
+				widgetanchor = top|hcenter
+				align = center
+			}
+		}
+		
+		widget = {
+			size = { 6 6 }
+		}
+		
+		icon = {
+			alpha_recursive = "[TransparentIfZero(OverviewView.GetPlayer.GetRuler.GetCorruption)]"
+			name = "Corruption"
+			size = { 130 32 }
+			texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 28 20 }
+			
+			tooltip = "[OverviewView.GetRulerCorruptionToolTip]"
+			
+			icon = {
+				position = { 4 1 }
+				size = { 28 28 }
+				using = icon_corruption
+			}
+			
+			textbox = {
+				name = "Corruption_value"
+				position = { 67 3 }
+				size = { 90 20 }
+				multiline = no
+				using = MarbleButtonFontM
+				text = "[OverviewView.GetPlayer.GetRuler.GetCorruption|/0]"
+				widgetanchor = top|hcenter
+				align = center
+			}
+		}
+	}
+	
+	
+	#CIVIL WAR
+	icon = {
+		name = "Possible Civil War"
+		position = { 557 303 }
+		size = { 327 32 }
+		texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 28 20 }
+		tooltip = "[OverviewView.GetPlayer.GetPossibleCivilWarTooltip]"
+		alpha_recursive = "[TransparentIfZero(OverviewView.GetPlayer.GetProgressTowardsCivilWar)]"
+		
+		icon = {
+			position = { 2 0 }
+			size = { 30 30 }
+			texture = "gfx/interface/icons/shared_icons/civil_war_active_inactive.dds"
+			frame = "[OverviewView.GetPlayer.GetCivilWarFrame]"
+			framesize = { 50 50 }
+		}
+		
+		container = {
+			position = { 34 11 }
+			
+			icon = {
+				name = "progressbar_frame"
+				spriteType = Corneredtiled
+				spriteborder = { 5 2 }
+				size = { 278 11 }
+				texture = "gfx/interface/tiles/progressbar_green_frame.dds"
+			}
+			
+			progressbar = {
+				using = progressbar_green_horizontal
+				position = { 2 2 }
+				size = { 274 7 }
+				value = "[FixedPointToFloat(OverviewView.GetPlayer.GetProgressTowardsCivilWar)]"
+			}
+		}
+	}
+	
+	#REVOLTS
+	icon = {
+		name = "Possible Revolt"
+		position = { 557 341 }
+		size = { 327 32 }
+		texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 28 20 }
+		tooltip = "[OverviewView.GetPlayer.GetPossibleRevoltTooltip]"
+		alpha_recursive = "[TransparentIfZero(OverviewView.GetPlayer.GetProgressTowardsRevolt)]"
+		
+		icon = {
+			position = { 2 -1 }
+			size = { 30 30 }
+			texture = "gfx/interface/icons/shared_icons/revolt_active_inactive.dds"
+			frame = "[OverviewView.GetPlayer.GetCivilWarFrame]"
+			framesize = { 50 50 }
+		}
+		
+		container = {
+			position = { 34 11 }
+			
+			icon = {
+				name = "progressbar_frame"
+				spriteType = Corneredtiled
+				spriteborder = { 5 2 }
+				size = { 278 11 }
+				texture = "gfx/interface/tiles/progressbar_green_frame.dds"
+			}
+			
+			progressbar = {
+				using = progressbar_green_horizontal
+				position = { 2 2 }
+				size = { 274 7 }
+				value = "[FixedPointToFloat(OverviewView.GetPlayer.GetProgressTowardsRevolt)]"
+			}
+		}
+	}
+	
+	#Pop Piecharts
+	flowcontainer = {
+		position = { 188 303 }
+		
+		icon = {
+			size = { 117 68 }
+			texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 28 20 }
+			
+			icon = {
+				position = { 7 14 }
+				texture = "gfx/interface/icons/governor_policies/cultural_assimilation.dds"
+				size = { 40 40 }
+				tooltip = "POPCULTUREPIECHART"
+			}
+			
+			piechart = {
+				size = { 50 50 }
+				position = { 55 9 }
+				
+				datamodel = "[OverviewView.GetPopCultures]"
+				
+				item = {
+					pieslice = {
+						texture = "gfx/interface/piechart.dds"
+						tooltip = "[PopCultureItem.GetTooltip]"
+						value = "[PopCultureItem.GetSize]"
+						color = "[PopCultureItem.GetColor]"
+					}
+				}
+			}
+			
+			icon = {
+				name = "frame"
+				position = { 52 7 }
+				texture = "gfx/interface/tiles/pie_chart_overlay_100.dds"
+				size = { 55 55 }
+			}
+		}
+		
+		widget = {
+			size = { 6 6 }
+		}
+		
+		icon = {
+			size = { 117 68 }
+			texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 28 20 }
+			
+			icon = {
+				position = { 8 14 }
+				using = icon_religious
+				size = { 40 40 }
+				tooltip = "POPRELIGIONPIECHART"
+			}
+			
+			piechart = {
+				size = { 50 50 }
+				position = { 55 9 }
+				
+				datamodel = "[OverviewView.GetPopReligions]"
+				
+				item = {
+					pieslice = {
+						texture = "gfx/interface/piechart.dds"
+						tooltip = "[PopReligionItem.GetName]"
+						value = "[PopReligionItem.GetSize]"
+						color = "[PopReligionItem.GetColor]"
+					}
+				}
+			}
+			
+			icon = {
+				name = "frame"
+				position = { 52 7 }
+				texture = "gfx/interface/tiles/pie_chart_overlay_100.dds"
+				size = { 55 55 }
+			}
+		}
+		
+		widget = {
+			size = { 6 6 }
+		}
+		
+		icon = {
+			size = { 117 68 }
+			texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 28 20 }
+			
+			
+			icon = {
+				position = { 7 14 }
+				texture = "gfx/interface/icons/shared_icons/pop_type.dds"
+				size = { 40 40 }
+				tooltip = "POPTYPEPIECHART"
+			}
+			
+			piechart = {
+				size = { 50 50 }
+				position = { 55 9 }
+				
+				datamodel = "[OverviewView.GetPopTypes]"
+				
+				item = {
+					pieslice = {
+						texture = "gfx/interface/piechart.dds"
+						tooltip = "[PopTypeItem.GetName]"
+						value = "[PopTypeItem.GetSize]"
+						color = "[PopTypeItem.GetColor]"
+					}
+				}
+			}
+			
+			icon = {
+				name = "frame"
+				position = { 52 7 }
+				texture = "gfx/interface/tiles/pie_chart_overlay_100.dds"
+				size = { 55 55 }
+			}
+		}
+	}
+	
+	
+	
+	##############################################
+	# States
+	##############################################
+	widget = {
+		position = { 47 380 }
+		size = { 1050 450 }
+		
+		sort_button = {
+			name = "sort_name"
+			size = { 320 40 }
+			tooltip = SORT_PROVINCE_TT
+			onclick = "[OverviewView.Sort('name')]"
+			down = "[OverviewView.IsSorted('name')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			
+			blockoverride "text_position"
+			{
+				parentanchor = top|hcenter
+				position = { 0 3 }
+				text = "PROVINCE_NAME_HEADING"
+			}
+		}
+		
+		
+		sort_button = {
+			name = "sort_gov"
+			position = { 320 0 }
+			size = { 120 40 }
+			tooltip = SORT_GOVERNOR_TT
+			onclick = "[OverviewView.Sort('governor')]"
+			down = "[OverviewView.IsSorted('governor')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			
+			blockoverride "text_position"
+			{
+				parentanchor = top|hcenter
+				position = { 0 3 }
+				text = "GOVERNOR_NAME_HEADING"
+			}
+		}
+		
+		sort_button = {
+			name = "sort_mages"
+			position = { 440 0 }
+			size = { 56 40 }
+			tooltip = SORT_MAGES_TT
+			onclick = "[OverviewView.Sort('mages')]"
+			down = "[OverviewView.IsSorted('mages')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			icon = {
+				using = icon_pop_mages
+				size = { 30 30 }
+				position = { 30 3 }
+				widgetanchor = top|hcenter
+			}
+		}
+
+		sort_button = {
+			name = "sort_citizens"
+			position = { 496 0 }
+			size = { 56 40 }
+			tooltip = SORT_CITIZENS_TT
+			onclick = "[OverviewView.Sort('citizen')]"
+			down = "[OverviewView.IsSorted('citizen')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			icon = {
+				using = icon_pop_citizens
+				size = { 30 30 }
+				position = { 30 3 }
+				widgetanchor = top|hcenter
+			}
+		}
+		
+		sort_button = {
+			name = "sort_merchants"
+			position = { 552 0 }
+			size = { 56 40 }
+			tooltip = SORT_MERCHANTS_TT
+			onclick = "[OverviewView.Sort('merchants')]"
+			down = "[OverviewView.IsSorted('merchants')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			icon = {
+				using = icon_pop_merchants
+				size = { 32 32 }
+				position = { 31 3 }
+				widgetanchor = top|hcenter
+			}
+		}
+
+		sort_button = {
+			name = "sort_freemen"
+			position = { 608 0 }
+			size = { 56 40 }
+			tooltip = SORT_FREEMEN_TT
+			onclick = "[OverviewView.Sort('freemen')]"
+			down = "[OverviewView.IsSorted('freemen')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			icon = {
+				using = icon_pop_freemen
+				size = { 32 32 }
+				position = { 31 3 }
+				widgetanchor = top|hcenter
+			}
+		}
+		
+		sort_button = {
+			name = "sort_fighters"
+			position = { 663 0 }
+			size = { 56 40 }
+			tooltip = SORT_FIGHTERS_TT
+			onclick = "[OverviewView.Sort('fighters')]"
+			down = "[OverviewView.IsSorted('fighters')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			icon = {
+				using = icon_pop_fighters
+				size = { 32 32 }
+				position = { 31 3 }
+				widgetanchor = top|hcenter
+			}
+		}
+
+		sort_button = {
+			name = "sort_tribesmen"
+			position = { 719 0 }
+			size = { 56 40 }
+			tooltip = SORT_TRIBESMEN_TT
+			onclick = "[OverviewView.Sort('tribesmen')]"
+			down = "[OverviewView.IsSorted('tribesmen')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			icon = {
+				using = icon_pop_tribal
+				size = { 32 32 }
+				position = { 31 3 }
+				widgetanchor = top|hcenter
+			}
+		}
+		
+		sort_button = {
+			name = "sort_rogues"
+			position = { 775 0 }
+			size = { 56 40 }
+			tooltip = SORT_ROGUES_TT
+			onclick = "[OverviewView.Sort('rogues')]"
+			down = "[OverviewView.IsSorted('rogues')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			icon = {
+				using = icon_pop_rogues
+				size = { 32 32 }
+				position = { 29 3 }
+				widgetanchor = top|hcenter
+			}
+		}
+
+		sort_button = {
+			name = "sort_slaves"
+			position = { 831 0 }
+			size = { 56 40 }
+			tooltip = SORT_SLAVES_TT
+			onclick = "[OverviewView.Sort('slaves')]"
+			down = "[OverviewView.IsSorted('slaves')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			icon = {
+				using = icon_pop_slaves
+				size = { 32 32 }
+				position = { 29 3 }
+				widgetanchor = top|hcenter
+			}
+		}
+		
+		sort_button = {
+			name = "sort_trade_roots"
+			position = { 887 0 }
+			size = { 65 40 }
+			tooltip = SORT_TRADE_TT
+			onclick = "[OverviewView.Sort('trade')]"
+			down = "[OverviewView.IsSorted('trade')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			icon = {
+				texture = "gfx/interface/icons/shared_icons/trade.dds"
+				size = { 32 32 }
+				position = { 34 2 }
+				widgetanchor = top|hcenter
+			}
+		}
+		
+		sort_button = {
+			name = "sort_loyalty"
+			position = { 951 0 }
+			size = { 94 40 }
+			tooltip = SORT_LOYALTY_TT
+			onclick = "[OverviewView.Sort('loyalty')]"
+			down = "[OverviewView.IsSorted('loyalty')]"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_sub_tab"
+			icon = {
+				texture = "gfx/interface/icons/shared_icons/loyalty.dds"
+				size = { 32 32 }
+				position = { 49 2 }
+				widgetanchor = top|hcenter
+			}
+		}
+		
+		icon = {
+			texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+			spriteType = Corneredtiled
+			position = { 2 42 }
+			spriteborder = { 20 20 }
+			size = { 837 410 }
+		}
+		
+		scrollarea = {
+			position = { 2 44 }
+			size = { 1050 406 }
+			scrollbarpolicy_horizontal = always_off
+			
+			scrollbar_vertical = {
+				using = MarbleScrollBar
+				blockoverride "ScrollBar_offset"
+				{
+					size = { 0 4 }
+				}
+			}
+			
+			scrollwidget = {
+				
+				dynamicgridbox = {
+					name = "states_grid"
+					size = { 1050 300 }
+					
+					datamodel = "[OverviewView.GetStates]"
+					
+					item = {
+						container = {
+							onmousehierarchyenter = "[SetHighlightArea( State.GetArea )]"
+							onmousehierarchyleave = "[ClearHighlightColors]"
+						
+							button_standard_white_marble_s = {
+								position = { 2 13 }
+								tooltip = "[State.GetMemberInformation]"
+								onclick = "[OnClickOnState(State.GetState)]"
+								using = MarbleButtonFont
+								size = { 316 38 }
+								
+								buttonText = {
+									textbox = {
+										parentanchor = top|hcenter
+										using = MarbleButtonFontS
+										autoresize = yes
+										text = "[State.GetShortName]"
+										position = { 0 2 }
+									}
+								}
+							}
+							
+							portrait_button = {
+								using = portrait_40
+								position = { 327 -1 }
+								name = "player_portrait"
+								parentanchor = bottom|left
+								datacontext = "[State.GetGovernorOrRuler]"
+								widgetanchor = bottom|left
+							}
+							
+							button = {
+								position = { 377 7 }
+								tooltip = "OVERVIEW_GOVPOL_TOOLTIP"
+								texture = "gfx/interface/buttons/button_square_40.dds"
+								size = { 50 50 }
+								icon = {
+									size = { 50 50 }
+									texture = "[GetGovernorPolicyIcon(State.GetGovernorPolicy)]"
+								}
+								onclick = "[ChangePolicy(State.GetState)]"
+							}
+							
+							icon = {
+								position = { 440 15 }
+								size = { 52 34 }
+								texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 28 20 }
+							
+								textbox = {
+									position = { 0 3 }
+									autoresize = yes
+									using = MarbleButtonFont
+									text = "[State.GetPopulation('mages')]"
+									align = center
+									parentanchor = top|hcenter
+									widgetanchor = top|hcenter
+									tooltip = "[State.GetPopulationInfo('mages')]"
+								}
+							}
+							
+							icon = {
+								position = { 496 15 }
+								size = { 52 34 }
+								texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 28 20 }
+							
+								textbox = {
+									position = { 0 3 }
+									autoresize = yes
+									using = MarbleButtonFont
+									text = "[State.GetPopulation('citizen')]"
+									align = center
+									parentanchor = top|hcenter
+									widgetanchor = top|hcenter
+									tooltip = "[State.GetPopulationInfo('citizen')]"
+								}
+							}							
+							
+							icon = {
+								position = { 552 15 }
+								size = { 52 34 }
+								texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 28 20 }
+							
+								textbox = {
+									position = { 0 3 }
+									autoresize = yes
+									using = MarbleButtonFont
+									text = "[State.GetPopulation('merchants')]"
+									align = center
+									parentanchor = top|hcenter
+									widgetanchor = top|hcenter
+									tooltip = "[State.GetPopulationInfo('merchants')]"
+								}
+							}							
+							
+							icon = {
+								position = { 608 15 }
+								size = { 52 34 }
+								texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 28 20 }
+							
+								textbox = {
+									position = { 0 3 }
+									autoresize = yes
+									using = MarbleButtonFont
+									text = "[State.GetPopulation('freemen')]"
+									align = center
+									parentanchor = top|hcenter
+									widgetanchor = top|hcenter
+									tooltip = "[State.GetPopulationInfo('freemen')]"
+								}
+							}
+							
+							icon = {
+								position = { 664 15 }
+								size = { 52 34 }
+								texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 28 20 }
+
+								textbox = {
+									position = { 0 3 }
+									autoresize = yes
+									using = MarbleButtonFont
+									text = "[State.GetPopulation('fighters')]"
+									align = center
+									parentanchor = top|hcenter
+									widgetanchor = top|hcenter
+									tooltip = "[State.GetPopulationInfo('fighters')]"
+								}
+							}
+							
+							icon = {
+								position = { 720 15 }
+								size = { 52 34 }
+								texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 28 20 }
+
+								textbox = {
+									position = { 0 3 }
+									autoresize = yes
+									using = MarbleButtonFont
+									text = "[State.GetPopulation('tribesmen')]"
+									align = center
+									parentanchor = top|hcenter
+									widgetanchor = top|hcenter
+									tooltip = "[State.GetPopulationInfo('tribesmen')]"
+								}
+							}	
+							
+							icon = {
+								position = { 776 15 }
+								size = { 52 34 }
+								texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 28 20 }
+							
+								textbox = {
+									position = { 0 3 }
+									autoresize = yes
+									using = MarbleButtonFont
+									text = "[State.GetPopulation('rogues')]"
+									align = center
+									parentanchor = top|hcenter
+									widgetanchor = top|hcenter
+									tooltip = "[State.GetPopulationInfo('rogues')]"
+								}
+							}	
+							
+							icon = {
+								position = { 832 15 }
+								size = { 52 34 }
+								texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 28 20 }
+							
+								textbox = {
+									position = { 0 3 }
+									autoresize = yes
+									using = MarbleButtonFont
+									text = "[State.GetPopulation('slaves')]"
+									align = center
+									parentanchor = top|hcenter
+									widgetanchor = top|hcenter
+									tooltip = "[State.GetPopulationInfo('slaves')]"
+								}
+							}							
+							
+							icon = {
+								position = { 888 15 }
+								size = { 60 34 }
+								texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 28 20 }
+							
+								textbox = {
+									position = { 0 3 }
+									autoresize = yes
+									using = MarbleButtonFont
+									text = "[State.GetTradeRoutesShort]"
+									tooltip = "[State.GetTradeRoutesTooltip]"
+									align = center
+									parentanchor = top|hcenter
+									widgetanchor = top|hcenter
+								}
+							}	
+							
+							icon = {
+								position = { 952 15 }
+								size = { 90 34 }
+								texture = "gfx/interface/tiles/list_slot_corner_tiles.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 28 20 }
+							
+								flowcontainer = {
+									position = { 3 3 }
+									direction = horizontal
+									parentanchor = top|hcenter
+									widgetanchor = top|hcenter	
+									ignoreinvisible = no								
+								
+									textbox = {
+										autoresize = yes
+										using = MarbleButtonFont
+										text = "[State.GetStateLoyalty|1]%"
+										tooltip = "[State.GetLoyaltyTooltip]"
+										align = center
+
+									}
+									icon = {
+										texture = "gfx/interface/arrows_strip.dds"
+										framesize = { 50 50 }
+										size = { 28 28 }
+										frame = "[State.GetMonthlyLoyaltyFrame]"
+										tooltip = "[State.GetLoyaltyTooltip]"
+										visible = "[Not(State.IsCapitalState)]"
+									}								
+								
+								}
+							}	
+							
+
+						
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+}
+

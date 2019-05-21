@@ -1,0 +1,619 @@
+﻿namespace = tes_pops
+
+tes_pops.1 = { #slaves resettled
+	type = country_event
+	title = "tes_pops.1.t"
+	desc = "tes_pops.1.desc"
+	picture = slaves_working
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_pops_1_target.governor
+	
+	goto_location = scope:tes_pops_1_target
+	
+	trigger = {
+		war = no
+		any_owned_province = {
+			total_population >= 20
+			num_of_slaves >= 10
+		}
+		any_owned_province = {
+			num_of_slaves < 10
+			region = root.capital_scope
+		}
+		var:slaves_policy >= 1
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				total_population >= 20
+				num_of_slaves >= 10
+			}
+			save_scope_as = tes_pops_1_origin
+		}
+		random_owned_province = {
+			limit = {
+				num_of_slaves < 10
+				region = root.capital_scope
+			}
+			save_scope_as = tes_pops_1_target
+		}
+	}
+	
+	option = {
+		name = "tes_pops.1.a"
+		scope:tes_pops_1_origin = {
+			random_pops_in_province = {
+				limit = { pop_type = slaves }
+				move_pop = scope:tes_pops_1_target
+			}
+		}
+	}
+}
+
+tes_pops.2 = { #pops converted into fighters
+	type = country_event
+	title = "tes_pops.2.t"
+	desc = "tes_pops.2.desc"
+	picture = persia_marching
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_pops_2_target.governor
+	
+	goto_location = scope:tes_pops_2_target
+	
+	trigger = {
+		any_owned_province = {
+			total_population >= 4
+			any_pops_in_province = {
+				percent <= 0.5
+				OR = {
+					pop_type = fighters
+					pop_type = mages
+					pop_type = merchants
+				}
+			}
+			any_pops_in_province = {
+				NOR = {
+					pop_type = fighters
+					pop_type = mages
+					pop_type = merchants
+					pop_type = rogues
+					pop_type = slaves
+				}
+
+			}
+		}
+		var:fighters_policy >= 2
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				total_population >= 4
+				any_pops_in_province = {
+					percent <= 0.5
+					OR = {
+						pop_type = fighters
+						pop_type = mages
+						pop_type = merchants
+					}
+				}
+				any_pops_in_province = {
+					NOR = {
+						pop_type = fighters
+						pop_type = mages
+						pop_type = merchants
+						pop_type = rogues
+						pop_type = slaves
+					}
+				}
+			}
+			weight = {
+				modifier = {
+					factor = 10
+					has_province_modifier = fighters_guild_hall_lvl1
+				}
+			}
+			random_pops_in_province = {
+				limit = {
+					NOR = {
+						pop_type = fighters
+						pop_type = mages
+						pop_type = merchants
+						pop_type = rogues
+						pop_type = slaves
+					}
+				}
+				weight = {
+					modifier = {
+						factor = 5
+						OR = {
+							pop_type = citizen
+							pop_type = tribesmen
+						}
+					}
+				}
+				save_scope_as = tes_pops_2_target
+			}
+		}
+	}
+	
+	option = {
+		name = "tes_pops.2.a"
+		scope:tes_pops_2_target = {
+			set_pop_type = fighters
+		}
+	}
+}
+
+tes_pops.3 = { #pops converted into mages
+	type = country_event
+	title = "tes_pops.3.t"
+	desc = "tes_pops.3.desc"
+	picture = greek_philosophers
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_pops_3_target.governor
+	
+	goto_location = scope:tes_pops_3_target
+	
+	trigger = {
+		any_owned_province = {
+			total_population >= 4
+			any_pops_in_province = {
+				percent <= 0.5
+				OR = {
+					pop_type = fighters
+					pop_type = mages
+					pop_type = merchants
+				}
+			}
+			any_pops_in_province = {
+				NOR = {
+					pop_type = fighters
+					pop_type = mages
+					pop_type = merchants
+					pop_type = rogues
+					pop_type = slaves
+				}
+
+			}
+		}
+		var:mages_policy >= 2
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				total_population >= 4
+				any_pops_in_province = {
+					percent <= 0.5
+					OR = {
+						pop_type = fighters
+						pop_type = mages
+						pop_type = merchants
+					}
+				}
+				any_pops_in_province = {
+					NOR = {
+						pop_type = fighters
+						pop_type = mages
+						pop_type = merchants
+						pop_type = rogues
+						pop_type = slaves
+					}
+				}
+			}
+			weight = {
+				modifier = {
+					factor = 10
+					has_province_modifier = mages_guild_hall_lvl1
+				}
+			}
+			random_pops_in_province = {
+				limit = {
+					NOR = {
+						pop_type = fighters
+						pop_type = mages
+						pop_type = merchants
+						pop_type = rogues
+						pop_type = slaves
+					}
+				}
+				weight = {
+					modifier = {
+						factor = 20
+						pop_type = citizen
+					}
+				}
+				save_scope_as = tes_pops_3_target
+			}
+		}
+	}
+	
+	option = {
+		name = "tes_pops.3.a"
+		scope:tes_pops_3_target = {
+			set_pop_type = mages
+		}
+	}
+}
+
+tes_pops.4 = { #pops converted into merchants
+	type = country_event
+	title = "tes_pops.4.t"
+	desc = "tes_pops.4.desc"
+	picture = trade_port
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_pops_4_target.governor
+	
+	goto_location = scope:tes_pops_4_target
+	
+	trigger = {
+		any_owned_province = {
+			total_population >= 4
+			any_pops_in_province = {
+				percent <= 0.5
+				OR = {
+					pop_type = fighters
+					pop_type = mages
+					pop_type = merchants
+				}
+			}
+			any_pops_in_province = {
+				NOR = {
+					pop_type = fighters
+					pop_type = mages
+					pop_type = merchants
+					pop_type = rogues
+					pop_type = slaves
+				}
+
+			}
+		}
+		var:merchants_policy >= 2
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				total_population >= 4
+				any_pops_in_province = {
+					percent <= 0.5
+					OR = {
+						pop_type = fighters
+						pop_type = mages
+						pop_type = merchants
+					}
+				}
+				any_pops_in_province = {
+					NOR = {
+						pop_type = fighters
+						pop_type = mages
+						pop_type = merchants
+						pop_type = rogues
+						pop_type = slaves
+					}
+				}
+			}
+#			weight = {
+#				modifier = {
+#					factor = 10
+#					has_province_modifier = merchants_guild_hall_lvl1
+#				}
+#			}
+			random_pops_in_province = {
+				limit = {
+					NOR = {
+						pop_type = fighters
+						pop_type = mages
+						pop_type = merchants
+						pop_type = rogues
+						pop_type = slaves
+					}
+				}
+				weight = {
+					modifier = {
+						factor = 5
+						OR = {
+							pop_type = citizen
+							pop_type = freemen
+						}
+					}
+				}
+				save_scope_as = tes_pops_4_target
+			}
+		}
+	}
+	
+	option = {
+		name = "tes_pops.4.a"
+		scope:tes_pops_4_target = {
+			set_pop_type = merchants
+		}
+	}
+}
+
+tes_pops.5 = { #pops converted into rogues
+	type = country_event
+	title = "tes_pops.5.t"
+	desc = "tes_pops.5.desc"
+	picture = assassination
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_pops_5_target.governor
+	
+	goto_location = scope:tes_pops_5_target
+	
+	trigger = {
+		any_owned_province = {
+			total_population >= 3
+			any_pops_in_province = {
+				percent <= 0.3
+				pop_type = rogues
+			}
+			any_pops_in_province = {
+				NOR = {
+					pop_type = fighters
+					pop_type = mages
+					pop_type = merchants
+					pop_type = rogues
+					pop_type = slaves
+				}
+
+			}
+		}
+		var:rogues_policy >= 2
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				total_population >= 3
+				any_pops_in_province = {
+					percent <= 0.3
+					pop_type = rogues
+				}
+				any_pops_in_province = {
+					NOR = {
+						pop_type = fighters
+						pop_type = mages
+						pop_type = merchants
+						pop_type = rogues
+						pop_type = slaves
+					}
+				}
+			}
+#			weight = {
+#				modifier = {
+#					factor = 10
+#					has_province_modifier = thieves_guild_hall_lvl1
+#				}
+#			}
+			random_pops_in_province = {
+				limit = {
+					NOR = {
+						pop_type = fighters
+						pop_type = mages
+						pop_type = merchants
+						pop_type = rogues
+						pop_type = slaves
+					}
+				}
+				weight = {
+					modifier = {
+						factor = 15
+						pop_type = freemen
+					}
+				}
+				save_scope_as = tes_pops_5_target
+			}
+		}
+	}
+	
+	option = {
+		name = "tes_pops.5.a"
+		scope:tes_pops_5_target = {
+			set_pop_type = rogues
+		}
+	}
+}
+
+tes_pops.6 = { #fighters converted into basic pops
+	type = country_event
+	title = "tes_pops.6.t"
+	desc = "tes_pops.6.desc"
+	picture = persia_marching
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_pops_6_target.governor
+	
+	goto_location = scope:tes_pops_6_target
+	
+	trigger = {
+		any_owned_province = {
+			any_pops_in_province = {
+				percent >= 0.05
+				pop_type = fighters
+			}
+		}
+		var:fighters_policy <= 0
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				any_pops_in_province = {
+					percent >= 0.05
+					pop_type = fighters
+				}
+			}
+			weight = {
+				modifier = {
+					factor = 10
+					NOT = { has_province_modifier = fighters_guild_hall_lvl1 }
+				}
+			}
+			random_pops_in_province = {
+				limit = {
+					pop_type = fighters
+				}
+				save_scope_as = tes_pops_6_target
+			}
+		}
+	}
+	
+	option = {
+		name = "tes_pops.6.a"
+		scope:tes_pops_6_target = {
+			set_pop_type = tribesmen
+		}
+	}
+}
+
+tes_pops.7 = { #mages converted into basic pops
+	type = country_event
+	title = "tes_pops.7.t"
+	desc = "tes_pops.7.desc"
+	picture = persia_marching
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_pops_7_target.governor
+	
+	goto_location = scope:tes_pops_7_target
+	
+	trigger = {
+		any_owned_province = {
+			any_pops_in_province = {
+				percent >= 0.05
+				pop_type = mages
+			}
+		}
+		var:mages_policy <= 0
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				any_pops_in_province = {
+					percent >= 0.05
+					pop_type = mages
+				}
+			}
+			weight = {
+				modifier = {
+					factor = 10
+					NOT = { has_province_modifier = mages_guild_hall_lvl1 }
+				}
+			}
+			random_pops_in_province = {
+				limit = {
+					pop_type = mages
+				}
+				save_scope_as = tes_pops_7_target
+			}
+		}
+	}
+	
+	option = {
+		name = "tes_pops.7.a"
+		scope:tes_pops_7_target = {
+			set_pop_type = citizen
+		}
+	}
+}
+
+tes_pops.8 = { #merchants converted into basic pops
+	type = country_event
+	title = "tes_pops.8.t"
+	desc = "tes_pops.8.desc"
+	picture = persia_marching
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_pops_8_target.governor
+	
+	goto_location = scope:tes_pops_8_target
+	
+	trigger = {
+		any_owned_province = {
+			any_pops_in_province = {
+				percent >= 0.1
+				pop_type = merchants
+			}
+		}
+		var:merchants_policy <= 0
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				any_pops_in_province = {
+					percent >= 0.1
+					pop_type = merchants
+				}
+			}
+			random_pops_in_province = {
+				limit = {
+					pop_type = merchants
+				}
+				save_scope_as = tes_pops_8_target
+			}
+		}
+	}
+	
+	option = {
+		name = "tes_pops.8.a"
+		scope:tes_pops_8_target = {
+			set_pop_type = freemen
+		}
+	}
+}
+
+tes_pops.9 = { #rogues converted into basic pops
+	type = country_event
+	title = "tes_pops.9.t"
+	desc = "tes_pops.9.desc"
+	picture = persia_marching
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_pops_9_target.governor
+	
+	goto_location = scope:tes_pops_9_target
+	
+	trigger = {
+		any_owned_province = {
+			any_pops_in_province = {
+				percent >= 0.2
+				pop_type = rogues
+			}
+		}
+		var:rogues_policy <= 0
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				any_pops_in_province = {
+					percent >= 0.2
+					pop_type = rogues
+				}
+			}
+			random_pops_in_province = {
+				limit = {
+					pop_type = rogues
+				}
+				save_scope_as = tes_pops_9_target
+			}
+		}
+	}
+	
+	option = {
+		name = "tes_pops.9.a"
+		scope:tes_pops_9_target = {
+			set_pop_type = freemen
+		}
+	}
+}

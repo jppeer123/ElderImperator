@@ -1,0 +1,159 @@
+﻿namespace = tes_guilds_mages
+
+tes_guilds_mages.1 = { #mages guild hall opened
+	type = country_event
+	title = "tes_guilds_mages.1.t"
+	desc = "tes_guilds_mages.1.desc"
+	picture = greek_philosophers
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_guilds_mages_1_target.governor
+	
+	goto_location = scope:tes_guilds_mages_1_target
+	
+	trigger = {
+		war = no
+		any_owned_province = {
+			total_population >= 10
+			num_of_mages >= 1
+			state = { NOT = { any_state_province = { has_province_modifier = mages_guild_hall_lvl1 } } }
+		}
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				total_population >= 10
+				num_of_mages >= 1
+				state = { NOT = { any_state_province = { has_province_modifier = mages_guild_hall_lvl1 } } }
+			}
+			save_scope_as = tes_guilds_mages_1_target
+		}
+		every_owned_province = {
+			limit = {
+				total_population >= 10
+				num_of_mages > scope:tes_guilds_mages_1_target.num_of_mages
+				state = { NOT = { any_state_province = { has_province_modifier = mages_guild_hall_lvl1 } } }
+			}
+			save_scope_as = tes_guilds_mages_1_target
+		}
+	}
+	
+	option = {
+		name = "tes_guilds_mages.1.a"
+		scope:tes_guilds_mages_1_target = {
+			add_permanent_province_modifier = { name = mages_guild_hall_lvl1 }
+		}
+	}
+}
+
+tes_guilds_mages.2 = { #mages move to the local guild hall
+	type = country_event
+	title = "tes_guilds_mages.2.t"
+	desc = "tes_guilds_mages.2.desc"
+	picture = greek_philosophers
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_guilds_mages_2_target.governor
+	
+	goto_location = scope:tes_guilds_mages_2_target
+	
+	trigger = {
+		war = no
+		any_owned_province = {
+			num_of_mages >= 3
+			NOT = { has_province_modifier = mages_guild_hall_lvl1 }
+			state = {
+				any_state_province = {
+					has_province_modifier = mages_guild_hall_lvl1
+					controller = root
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				num_of_mages >= 3
+				NOT = { has_province_modifier = mages_guild_hall_lvl1 }
+				state = {
+					any_state_province = {
+						has_province_modifier = mages_guild_hall_lvl1
+						controller = root
+					}
+				}
+			}
+			save_scope_as = tes_guilds_mages_2_origin
+			state = {
+				random_state_province = {
+					limit = { has_province_modifier = mages_guild_hall_lvl1 }
+					save_scope_as = tes_guilds_mages_2_target
+				}
+			}
+		}
+		
+	}
+	
+	option = {
+		name = "tes_guilds_mages.2.a"
+		scope:tes_guilds_mages_2_origin = {
+			random_pops_in_province = {
+				limit = { pop_type = mages }
+				move_pop = scope:tes_guilds_mages_2_target
+			}
+		}
+	}
+}
+
+tes_guilds_mages.3 = { #mages guild hall abandoned
+	type = country_event
+	title = "tes_guilds_mages.3.t"
+	desc = "tes_guilds_mages.3.desc"
+	picture = greek_philosophers
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_guilds_mages_3_target.governor
+	
+	goto_location = scope:tes_guilds_mages_3_target
+	
+	trigger = {
+		any_owned_province = {
+			num_of_mages = 0
+			has_province_modifier = mages_guild_hall_lvl1
+			NOT = {
+				state = {
+					any_state_province = {
+						num_of_mages >= 3
+						controller = root
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				num_of_mages = 0
+				has_province_modifier = mages_guild_hall_lvl1
+				NOT = {
+					state = {
+						any_state_province = {
+							num_of_mages >= 2
+							controller = root
+						}
+					}
+				}
+			}
+			save_scope_as = tes_guilds_mages_3_target
+		}
+	}
+	
+	option = {
+		name = "tes_guilds_mages.3.a"
+		scope:tes_guilds_mages_3_target = {
+			remove_province_modifier = mages_guild_hall_lvl1
+		}
+	}
+}

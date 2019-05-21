@@ -1,0 +1,1046 @@
+﻿on_bastard_birth = {
+	events =
+	{
+		
+	}		
+}
+
+in_naval_battle = {
+
+
+}
+
+in_land_battle = {
+
+}
+
+on_battle_won = {
+
+}
+
+on_battle_lost = {
+	random_events = {
+		1000 = 0	
+		50	= after_battle.2 #lose Victorious, if you have it
+		#50 = after_battle.10 #Disaster!	
+		50 = after_battle.4	#gaining brave or coward
+	}
+}
+
+on_siege_won = {
+	events = {
+		warfare.1
+	}
+
+}
+
+
+#scope:former_ruler, root = country
+on_ruler_change = {
+	effect = {
+		if = { #create family branch if needed, add opinion for posterity
+			limit = {
+				NOT = {
+					current_ruler.family.family_country = root
+				}
+			}
+			if = {
+				limit = {
+					current_ruler.family.family_country.num_of_cities >= 1
+				}
+				current_ruler.family.family_country = {
+					add_opinion = {
+						modifier = same_family_branch_opmod
+						target = root
+					}
+				}
+				root = {
+					add_opinion = {
+						modifier = same_family_branch_opmod
+						target = current_ruler.family.family_country
+					}
+				}
+			}
+			current_ruler.family = {
+				every_family_member = {
+					limit = {
+						employer = root
+					}
+					set_variable = {
+						name = iter
+						days = 1
+					}
+				}
+			}
+			create_family = current_ruler
+			every_character = {
+				limit = {
+					has_variable = iter
+					is_ruler = no
+				}
+				set_family = root.current_ruler.family
+			}
+		}
+		if = { #remove disloyal family mod if exists
+			limit = {
+				exists = root.current_ruler
+				root.current_ruler = {
+					has_character_modifier = disloyal_family_head_cmod
+				}
+			}
+			root.current_ruler = {
+				remove_triggered_character_modifier = disloyal_family_head_cmod
+			}
+		}
+		if = {
+			limit = {
+				root.current_ruler = {
+					has_variable = disloyal_family_head_var
+				}
+			}
+			root.current_ruler = {
+				remove_variable = disloyal_family_head_var
+			}
+		}
+		if = {
+			limit = {
+				scope:former_ruler = {
+					num_of_rivals >= 1
+					any_rival = {
+						is_ruler = yes
+						NOT = {
+							employer = root
+						}
+					}
+					employer = {
+						has_land = yes
+					}
+				}
+			}
+			scope:former_ruler = {
+				every_rival = {
+					limit = {
+						is_ruler = yes
+						NOT = {
+							employer = root
+						}
+					}
+					remove_rival = scope:former_ruler
+				}
+			}
+		}
+		if = {
+			limit = {
+				current_ruler = {
+					has_variable = prominent_actor
+					var:prominent_actor = 1
+				}
+				has_land = yes
+			}
+			current_ruler = {
+				change_variable = {
+					name = prominent_actor
+					add = -1
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:former_ruler = {
+					is_alive = yes
+					has_variable = prominent_actor
+					var:prominent_actor = 0
+					employer = {
+						has_land = yes
+					}
+				}
+			}
+			scope:former_ruler = {
+				change_variable = {
+					name = prominent_actor
+					add = 1
+				}
+			}
+		}
+		clear_befriending_var_effect = yes
+	}
+	events = {
+		new_ruler.1
+		ip_republic.36
+		succession_crisis.5
+		character_events.8
+		character_events.15
+		diadochi_flavor.6
+		diadochi_flavor.8 #Antigonus bad
+		diadochi_flavor.9 #Antigonus good
+	}
+	random_events = {
+		100 = 0
+		25 = character_events.30
+	}
+}
+
+
+#If the rebels won.
+#scope:target = ruler of losing side.
+on_civil_war_lost = {
+	effect = {
+		scope:target.employer = {
+			save_scope_as = civil_war_target
+		}
+		if = {
+			limit = {
+				scope:target.employer = {
+					government = dictatorship
+				}
+			}
+			change_government = democratic_republic
+		}
+	}
+	events = {
+		civil_war.3
+		civil_war.6
+	}
+}
+
+#If original country won.
+#scope:target = ruler of losing side.
+on_civil_war_won = {
+	effect = {
+		if = {
+			limit = {
+				is_iron_man = yes
+				is_ai = no
+				NOT = { 
+					has_variable = ach_triumvir_var
+				}
+			}
+			set_variable = {
+				name = ach_triumvir_var
+			}
+		}
+		scope:target.employer = {
+			save_scope_as = civil_war_target
+		}
+	}
+	events = {
+		civil_war.1
+		civil_war.5
+	}
+}
+
+on_return_of_the_king = {
+	
+}
+
+on_character_death = {
+	effect = {
+		befriend_removal_effect = yes
+		clear_befriending_var_effect = yes
+		if = {
+			limit = {
+				has_triggered_character_modifier = disloyal_family_head_cmod
+				is_general = yes
+			}
+			unit = {
+				destroy_unit = yes
+			}
+		}
+		if = {
+			limit = {
+				is_head_of_family = yes
+				exists = next_in_family
+			}
+			next_in_family = {
+				add_gold = family_inheritance_svalue
+			}
+			add_gold = {
+				value = 0
+				subtract = wealth
+			}
+		}
+		else_if = {
+			limit = {
+				is_head_of_family = no
+				exists = family.head_of_family
+				family.head_of_family = {
+					employer = root.employer
+				}
+			}
+			family.head_of_family = {
+				add_gold = family_individual_inheritance_svalue
+			}
+		}
+		if = {
+			limit = {
+				this = char:70
+				is_ruler = no
+				age <= 22
+				NOT = {
+					employer = c:EPI
+				}
+				c:EPI = {
+					has_land = yes
+				}
+			}
+			c:EPI = {
+				trigger_event = {
+					id = dhe_dde_pyrrhus.10
+				}
+			}
+		}
+		if = {
+			limit = {
+				is_ruler = yes
+				employer = {
+					is_monarchy = yes
+					has_land = yes
+				}
+			}
+			save_scope_as = former_ruler
+			employer = {
+				if = {
+					limit = {
+						NOR = {
+							has_variable = recent_succession_crisis
+							has_civil_war = yes
+						}
+						any_successor = {
+							loyalty < 33
+							is_adult = yes
+							is_ruler = no
+							is_pretender = yes
+							is_primary_heir = no
+							NOT = {
+								has_character_modifier = disloyal_successor_cmod
+							}
+						}
+					}
+					every_successor = {
+						limit = {
+							loyalty < 33
+							is_adult = yes
+							is_ruler = no
+							is_pretender = yes
+							is_primary_heir = no
+							NOT = {
+								has_character_modifier = disloyal_successor_cmod
+							}
+						}
+						if = {
+							limit = {
+								NOT = {
+									exists = scope:successor_general_1
+								}
+							}
+							save_scope_as = successor_general_1
+						}
+						else_if = {
+							limit = { 
+								NOT = {
+									exists = scope:successor_general_2
+								}
+							}
+							save_scope_as = successor_general_2
+						}
+						else_if = {
+							limit = {
+								NOT = {
+									exists = scope:successor_general_3
+								}
+							}
+							save_scope_as = successor_general_3
+						}
+						else_if = {
+							limit = {
+								NOT = {
+									exists = scope:successor_general_4
+								}
+							}
+							save_scope_as = successor_general_4
+						}
+					}
+					trigger_event = {
+						id = succession_crisis.1
+					}
+				}
+			}
+		}
+	}
+	events = {
+		olympic.10 #inform patron country of athlete death
+		ip_republic.33
+		
+	}
+	random_events = {
+		5 = character_events.1
+		75 = 0
+	}
+}
+
+on_deficit_pulse = {
+	random_events = {
+		10 = deficit.1
+		10 = deficit.2
+		10 = deficit.3
+		10 = deficit.4
+		10 = deficit.5
+		10 = deficit.6
+		100 = deficit.7
+		25 = deficit.10
+		50 = deficit.11
+		100 = 0
+	}
+}
+
+on_office_gained = {
+	events = {
+		office_gain.1
+	}
+}
+
+on_office_lost = {
+	events = {
+		office_gain.2
+		office.4
+	}
+}
+
+on_giving_birth = {
+	#scope:newborn is child, root is mother
+	effect = {
+		on_giving_birth_effect = yes
+		scope:newborn = {
+			inbreeding_effect = yes
+		}
+		scope:newborn = {
+			trigger_event = {
+				id = character_events.35
+				days = 1
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_variable = affair_pregnancy
+				}
+				employer = {
+					has_land = yes
+				}
+			}
+			root = {
+				remove_variable = affair_pregnancy
+			}
+			scope:newborn = {
+				save_scope_as = bastard_child
+			}
+			root.employer = {
+				trigger_event = {
+					id = ip_monarchy.39
+				}
+			}
+		}
+		scope:newborn = {
+			if = {
+				limit  = {
+					NOT = {
+						has_trait = lisp
+						is_alive = yes
+					}
+				}
+				random_list = {
+					1 = {
+						add_trait = lisp
+					}
+					99 = {  }
+				}
+			}
+		}
+	}
+	events = {
+		character_events.5
+	}
+	random_events = {
+		1 = health.1
+		1 = health.3
+		1 = health.4
+		30 = 0
+		30 = health.5
+	}
+}
+
+on_zero_health = {
+	events = {
+		death.1
+	}
+}
+
+on_becoming_adult = {
+	effect = {
+		on_becoming_adult_effect = yes
+		set_variable = {
+			name = ambition_tombola
+			value = { 
+				integer_range = { 
+					min = 1 
+					max = 7
+				} 
+			}
+			days = 10
+		}
+		if = {
+			limit = {
+				this = char:70
+			}
+			pyrrhus_of_age_effect = yes
+		}
+	}
+}
+
+on_winning_war = {
+	events = {
+
+	}
+}
+
+on_losing_war = {
+	events = {
+
+	}
+	
+}
+
+on_ending_war = {
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					tag = EPI
+				}
+				is_diadochus_trigger = yes
+				char:70 = {
+					employer = ROOT
+				}
+			}
+		}
+		ROOT = {
+			trigger_event = {
+				id = dhe_dde_pyrrhus.3
+			}
+		}
+	}
+	events = {
+		ip_republic.34
+	}
+}
+
+dictator_power_return = {
+	random_events = {
+		85 = ip_republic.23
+		15 = ip_republic.32
+	}
+}
+
+on_being_captured = {
+	effect = {
+		clear_ambition = yes
+	}
+	events = {
+		character_events.4
+	}
+}
+
+on_enacting_omen = {
+}
+
+on_being_imprisoned = {
+	events = {
+		character_events.17
+	}
+}
+
+on_move_country = { #scope:old_country is the origin country
+	effect = {
+		befriend_removal_effect = yes
+		clear_befriending_var_effect = yes
+		if = {
+			limit  = {
+				has_character_modifier = inspire_disloyalty_modifier
+			}
+			remove_character_modifier = inspire_disloyalty_modifier
+		}
+		if = {
+			limit = {
+				has_variable = imprisoned_manually
+			}
+			remove_variable = imprisoned_manually
+		}
+		if = {
+			limit = {
+				has_triggered_character_modifier = disloyal_family_head_cmod
+			}
+			remove_triggered_character_modifier = disloyal_family_head_cmod
+		}
+		if = {
+			limit = {
+				has_variable = disloyal_family_head_var
+			}
+			remove_variable = disloyal_family_head_var
+		}
+		if = {
+			limit = {
+				has_variable = prominent_actor
+			}
+			remove_variable = prominent_actor
+		}
+		if = {
+			limit = {
+				has_character_modifier = increased_family_wages
+			}
+			remove_character_modifier = increased_family_wages
+		}
+		if = {
+			limit = {
+				is_mercenary = yes
+				has_variable = pretender_from
+				exists = var:pretender_from
+				var:pretender_from = {
+					has_land = yes
+				}
+				var:pretender_from = employer
+				employer = {
+					is_monarchy = yes
+					has_land = yes
+				}
+			}
+			save_scope_as = returning_pretender
+			employer = {
+				trigger_event = {
+					id = succession_crisis.3
+					days = { 1 720 }
+				}
+			}
+		}
+		if = {
+			limit = {
+				is_mercenary = no
+			}
+			set_variable = {
+				name = came_from
+				value = scope:old_country
+			}
+		}
+	}
+	events = {
+		character_events.4
+		character_events.16
+	}
+}
+
+on_game_initialized = {
+	effect = {
+		C:PRY.current_ruler = { add_rival = C:EGY.current_ruler }
+		C:PRY.current_ruler = { add_rival = C:SEL.current_ruler }
+		C:PRY.current_ruler = { add_rival = C:MAC.current_ruler }
+		C:MAC.current_ruler = { add_rival = C:PRY.current_ruler }
+		C:MAC.current_ruler = { add_friend = C:TRE.current_ruler }
+		C:TRE.current_ruler = { add_friend = C:MAC.current_ruler }
+		C:EGY.current_ruler = { add_rival = C:PRY.current_ruler }
+		C:EGY.current_ruler = { add_friend = C:SEL.current_ruler }
+		C:SEL.current_ruler = { add_rival = C:PRY.current_ruler }
+		C:SEL.current_ruler = { add_friend = C:EGY.current_ruler }
+		every_country = {
+			set_variable = { name = fighters_policy value = 1 }
+			set_variable = { name = mages_policy value = 1 }
+			set_variable = { name = merchants_policy value = 1 }
+			set_variable = { name = rogues_policy value = 1 }
+			set_variable = { name = slaves_policy value = 1 }
+		}
+	}
+	events = {
+		syr_flavour.1
+		flavor_sel.1
+		startup_events.1
+		startup_events.2
+		startup_events.7
+		tutorial.1
+		flavor_epi.5
+		dhe_body.4
+		dhe_dde_pyrrhus.24
+	}
+}
+
+on_province_colonized = {
+
+}
+
+on_ownership_change = { #province scope
+	effect = {
+		if = {
+			limit = {
+				is_iron_man = yes
+				exists = owner
+				owner = {
+					is_ai = no
+					has_land = yes
+				}
+			}
+			owner = {
+				if = {
+					limit = {
+						NOT = {
+							has_variable = ach_render_unto_caesar_var
+						}
+					}
+					set_variable = {
+						name = ach_render_unto_caesar_var
+					}
+				}
+			}
+		}
+	}
+	events = {
+		dhe_city_fall.1
+		dhe_city_fall.2
+		dhe_city_fall.3
+		dhe_city_fall.4
+		dhe_city_fall.5
+		dhe_city_fall.6
+		dhe_city_fall.7
+		dhe_city_fall.8
+		dhe_city_fall.9
+		dhe_city_fall.10
+		dhe_city_fall.11
+		dhe_city_fall.12
+		dhe_city_fall.13
+		dhe_city_fall.14
+		dhe_city_fall.15
+		dhe_city_fall.16
+		dhe_city_fall.17
+		dhe_city_fall.100
+		dhe_body.3
+		roman_conquest.1
+	}
+}
+
+on_province_occupied = { #province scope, it will fire AS WELL as on_siege_won
+	events = {
+		slave_revolts.2 #Interactive Looting
+		slave_revolts.5 #Interactive Looting of capital
+	}
+}
+
+on_great_battle_won_country = { #root = country scope of the main unit on the winning side, scope:actor = main unit on the winning side, scope:target = main unit on the losing side
+	effect = {
+		if = {
+			limit = {
+				scope:actor = {
+					exists = commander
+				}
+			}
+			scope:actor.commander = {
+				trigger_event = {
+					on_action = custom_on_great_battle_commander
+				}
+			}
+		}
+	}
+}
+
+on_battle_won_country = { #root = country scope of the main unit on the winning side, scope:actor = main unit on the winning side, scope:target = main unit on the losing side
+	events = {
+	}
+	effect = {
+		if = {
+			limit = {
+				scope:target.unit_owner = c:REB #All REB stacks are slave stacks
+			}
+			scope:target.unit_location = { #Where did the rebels die?
+				if = {
+					limit = {
+						has_owner = yes #If the slaves wandered into no mans land and died there they are lost.
+					}
+					owner = { #The country in which the Slaves were crushed.
+						if = {
+							limit = {
+								has_country_modifier = ongoing_slave_revolt
+							}
+							remove_country_modifier = ongoing_slave_revolt #Right away
+						}
+						set_local_variable = {
+							name = slaves_defeated
+							value = { value = scope:target.unit_size }
+						}
+						trigger_event = { id = slave_revolts.3 }
+					}
+				}
+			}
+		}
+	}
+}
+
+on_great_battle_lost_country = { #root = country scope of the main unit on the losing side, scope:actor = main unit on the losing side, scope:target = main unit on the winning side
+	effect = {
+		if = {
+			limit = {
+				scope:target.unit_owner = c:REB #All REB stacks are slave stacks
+			}
+			scope:target.unit_location = { #Where did the rebels die?
+				if = {
+					limit = {
+						has_owner = yes #If the slaves wandered into no mans land and died there they are lost.
+					}
+					owner = { #The country in which the Slaves were crushed.
+						if = {
+							limit = {
+								has_country_modifier = ongoing_slave_revolt
+							}
+							remove_country_modifier = ongoing_slave_revolt #Right away
+						}
+						set_local_variable = {
+							name = slaves_defeated
+							value = { value = scope:target.unit_size }
+						}
+						trigger_event = { id = slave_revolts.3 }
+					}
+				}
+			}
+		}
+	}
+}
+
+on_battle_lost_country = { #root = country scope of the main unit on the losing side, scope:actor = main unit on the losing side, scope:target = main unit on the winning side
+	events = {
+		dhe_rome.14
+	}
+}
+
+# scope is country being annexed
+# scope:actor = country doing the annexing
+on_annex = {
+	effect = {
+		if = {
+			limit = {
+				is_subject_of = scope:actor
+			}
+			on_diplo_annexation_event_effect = yes
+		}
+		else = {
+			on_annexation_event_effect = yes
+		}
+	}
+}
+
+on_invention = {
+	effect = {
+		if = {
+			limit = {
+				is_tutorial_active = yes
+			}
+			set_variable = {
+				name = invention_purchased
+			}
+		}
+		if = {
+			limit = {
+				is_iron_man = yes
+				is_ai = no
+				has_land = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_variable = ach_circles_var
+					}
+				}
+				set_variable = {
+					name = ach_circles_var
+					value = 1
+				}
+			}
+			else = {
+				change_variable = {
+					name = ach_circles_var
+					add = 1
+				}
+			}
+		}
+	}
+}
+
+# Scope is the governor getting his policy changed
+on_policy_change = {
+	effect = {
+		if = {
+			limit = { is_ruler = no }
+			employer = { 
+				add_tyranny = {
+					value = 125
+					subtract = root.employer.current_ruler.popularity
+					multiply = 0.01
+				}
+			}
+		}
+	}
+}
+
+
+#character yearly pulses
+disease_possibilities = {
+	trigger = {
+		is_alive = yes
+		exists = employer
+		has_any_tier_1_2_3_illness_trigger = yes
+	}
+	random_events = {
+		10 = traits.8
+		10 = traits.10
+		10 = traits.11
+		10 = traits.12
+		10 = traits.14 
+		30 = traits.15 
+		150 = 0
+	}	
+}
+
+treatment_pulse = {
+	trigger = {
+		is_alive = yes
+		exists = employer
+		has_trait = seeking_treatment_trait
+		has_variable = seeking_treatment
+	}
+	random_events = {
+		50 = treatment.2
+		10 = treatment.5
+		20 = 0
+	}
+}
+
+character_story_events = 
+{
+	random_events = 
+	{
+		200 = 0
+		#Internal politics events
+		2 = ip_generic.1
+		1 = ip_generic.3
+		1 = ip_generic.4
+		1 = ip_generic.5
+		1 = ip_republic.4
+		1 = ip_republic.18
+		2 = ip_republic.19
+		#Get friends/rivals events
+		2 = friend_rival.1
+		2 = friend_rival.2
+		2 = friend_rival.11
+		2 = friend_rival.13
+		2 = friend_rival.14
+		2 = friend_rival.15
+		#2 = friend_rival.16
+		#Mentor/Mentee events
+		2 = friend_rival.7
+		2 = friend_rival.8
+		2 = friend_rival.9
+		2 = friend_rival.10
+		# Tribal Pol events
+		50 = tribal_pol.24
+		# Cult of Fortune events
+		1 = dhe_fortune_cult.10
+		1 = dhe_fortune_cult.11
+		# Isis Cult events
+		3 = dhe_isis_cult.10
+		1 = dhe_isis_cult.11
+		1 = dhe_isis_cult.12
+		1 = dhe_isis_cult.13
+		1 = dhe_isis_cult.14
+		3 = character_events.14
+		200 = character_events.18
+		1 = ip_monarchy.21
+		1 = ip_monarchy.23
+		1 = ip_monarchy.41
+	}
+}
+
+character_traits_pulse = 
+{
+	random_events = 
+	{
+		1000 = 0
+		300 = traits.1
+		3 = traits.2
+	}
+
+}
+
+yearly_medical_pulse = 
+{
+	random_events = 
+	{
+		150 = 0
+		#Illness
+		4 = traits.4
+		2 = traits.6
+		2 = traits.8
+		1 = health.6 # depression
+		4 = health.7 # getting better from depression
+		30 = death.2 # old age
+		1 = traits.18
+	}
+}
+
+yearly_debt_pulse = {
+	trigger = {
+		wealth < 0
+		prisoner = no
+		is_adult = yes
+	}
+	random_events = {
+		20 = 0
+		20 = character_events.9
+		20 = character_events.10
+		20 = character_events.12
+		20 = character_events.13
+		20 = character_events.19
+	}
+}
+
+yearly_culture_religion_switch_pulse = {
+	random_events = {
+		98 = 0
+		1 = character_events.21
+		1 = character_events.22
+		2 = character_events.23
+		2 = character_events.24
+	}
+}
+
+yearly_character_murder_pulse = {
+	random_events = {
+		98 = 0
+		2 = character_events.28
+	}
+}
+
+
+yearly_disloyal_generals_delay_pulse = {
+	trigger = {
+		is_general = yes
+		loyalty <= 50
+		NOT = {
+			has_character_modifier = disloyal_successor_cmod
+		}
+	}
+	random_events = {
+		50 = 0
+		50 = commander_loyalty.4
+	}
+}
+
+yearly_financial_support_pulse = {
+	random_events = {
+		100 = 0
+		50 = character_events.36
+		50 = character_events.37
+	}
+}

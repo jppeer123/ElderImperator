@@ -1,0 +1,12 @@
+### Guilds ###
+### Fighters Guild ###
+fighters_guild_hall_lvl1 = {
+	local_unrest = -1
+	local_fighters_output = 0.5
+}
+
+### Mages Guild ###
+mages_guild_hall_lvl1 = {
+	local_mages_output = 0.5
+}
+

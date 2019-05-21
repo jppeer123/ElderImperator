@@ -44,7 +44,47 @@ window = {
 				using = MarbleButtonFontL
 				text = "[ProvinceWindow.GetState.GetLongName]"
 			}
-			
+
+			button = { #fighters guild
+				position = { -78 27 }
+				size = { 31 33 }
+				parentanchor = top|right
+				texture = "gfx/interface/buttons/button_square_42.dds"
+				datacontext = "[GetScriptedGui('province_invite_fighters_guild')"
+				#enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(ProvinceWindow.GetProvince.MakeScope).End)]"
+				visible = "[And(ProvinceWindow.IsPlayerProvince,ScriptedGui.IsShown(GuiScope.SetRoot(ProvinceWindow.GetProvince.MakeScope).End))]"
+				onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(ProvinceWindow.GetProvince.MakeScope).End)]"
+				tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(ProvinceWindow.GetProvince.MakeScope).End)]"
+				widgetanchor = left|vcenter
+
+				icon = {
+					#position = { -2 -2 }
+					texture = "gfx/interface/fighters_guild.dds"
+					#alwaystransparent = yes
+					size = { 32 32 }
+				}
+			}
+
+			button = { #mages guild
+				position = { -117 25 }
+				size = { 33 33 }
+				parentanchor = top|right
+				#texture = "gfx/interface/buttons/button_square_42.dds"
+				datacontext = "[GetScriptedGui('province_invite_mages_guild')"
+				#enabled = "[ScriptedGui.IsValid(GuiScope.SetRoot(ProvinceWindow.GetProvince.MakeScope).End)]"
+				visible = "[And(ProvinceWindow.IsPlayerProvince,ScriptedGui.IsShown(GuiScope.SetRoot(ProvinceWindow.GetProvince.MakeScope).End))]"
+				onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(ProvinceWindow.GetProvince.MakeScope).End)]"
+				tooltip = "[ScriptedGui.BuildTooltip(GuiScope.SetRoot(ProvinceWindow.GetProvince.MakeScope).End)]"
+				widgetanchor = left|vcenter
+						
+				icon = {
+					position = { 2 2 }
+					texture = "gfx/interface/mages_guild.dds"
+					#alwaystransparent = yes
+					size = { 32 32 }
+				}
+			}
+
 			square_close_button = {
 				#	using = button_close_01
 				name = "close_button"
@@ -1083,7 +1123,7 @@ window = {
 				
 				icon = {
 					name = "vertical_divider_2"
-					position = { 262 99 }
+					position = { 390 99 }
 					texture = "gfx/interface/tiles/vertical_divider.dds"
 					spriteType = corneredtiled
 					spriteborder = { 0 10 }
@@ -1198,14 +1238,14 @@ window = {
 								icon = {
 									#position = { 2 3 }
 									size = { 38 38 }
-									using = icon_pop_citizens
+									using = icon_pop_mages
 									parentanchor = center
 								}				
 							}
 
 							icon = {
 								position = { -2 0 }
-								using = icon_pop_citizens
+								using = icon_pop_mages
 								visible = "[Not(ProvinceWindow.IsPlayerProvince)]"
 							}
 							
@@ -1277,14 +1317,14 @@ window = {
 				
 								icon = {
 									size = { 38 38 }
-									using = icon_pop_freemen
+									using = icon_pop_merchants
 									parentanchor = center
 								}				
 							}
 							
 							icon = {
 								position = { -2 0 }
-								using = icon_pop_freemen
+								using = icon_pop_merchants
 								visible = "[Not(ProvinceWindow.IsPlayerProvince)]"
 							}
 							
@@ -1355,13 +1395,13 @@ window = {
 				
 								icon = {
 									size = { 38 38 }
-									using = icon_pop_freemen
+									using = icon_pop_fighters
 									parentanchor = center
 								}				
 							}
 							icon = {
 								position = { -2 0 }
-								using = icon_pop_freemen
+								using = icon_pop_fighters
 								visible = "[Not(ProvinceWindow.IsPlayerProvince)]"
 							}
 							
@@ -1433,13 +1473,13 @@ window = {
 				
 								icon = {
 									size = { 38 38 }
-									using = icon_pop_freemen
+									using = icon_pop_rogues
 									parentanchor = center
 								}				
 							}
 							icon = {
 								position = { -2 0 }
-								using = icon_pop_freemen
+								using = icon_pop_rogues
 								visible = "[Not(ProvinceWindow.IsPlayerProvince)]"
 							}
 							
@@ -1607,7 +1647,6 @@ window = {
 						}
 					}
 
-####################################################Second column###########################################################################
 					flowcontainer = {
 						position = { 125 45 }
 						direction = vertical
@@ -2127,8 +2166,8 @@ window = {
 								}
 								progressbar = {
 									using = progress_bar_yellow_buildings
-									size = { 65 30 }
-									position = { 88 8 }
+									size = { 58 29 }
+									position = { 91 8 }
 									value = "[BuildingItem.GetBuildProgress]"
 								}
 								

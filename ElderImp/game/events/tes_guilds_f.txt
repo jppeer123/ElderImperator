@@ -1,0 +1,159 @@
+﻿namespace = tes_guilds_f
+
+tes_guilds_f.1 = { #fighters guild hall opened
+	type = country_event
+	title = "tes_guilds_f.1.t"
+	desc = "tes_guilds_f.1.desc"
+	picture = persia_marching
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_guilds_f_1_target.governor
+	
+	goto_location = scope:tes_guilds_f_1_target
+	
+	trigger = {
+		war = no
+		any_owned_province = {
+			total_population >= 10
+			num_of_fighters >= 3
+			state = { NOT = { any_state_province = { has_province_modifier = fighters_guild_hall_lvl1 } } }
+		}
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				total_population >= 10
+				num_of_fighters >= 3
+				state = { NOT = { any_state_province = { has_province_modifier = fighters_guild_hall_lvl1 } } }
+			}
+			save_scope_as = tes_guilds_f_1_target
+		}
+		every_owned_province = {
+			limit = {
+				total_population >= 10
+				num_of_fighters > scope:tes_guilds_f_1_target.num_of_fighters
+				state = { NOT = { any_state_province = { has_province_modifier = fighters_guild_hall_lvl1 } } }
+			}
+			save_scope_as = tes_guilds_f_1_target
+		}
+	}
+	
+	option = { #accept
+		name = "tes_guilds_f.1.a"
+		scope:tes_guilds_f_1_target = {
+			add_permanent_province_modifier = { name = fighters_guild_hall_lvl1 }
+		}
+	}
+}
+
+tes_guilds_f.2 = { #fighters move to the local guild hall
+	type = country_event
+	title = "tes_guilds_f.2.t"
+	desc = "tes_guilds_f.2.desc"
+	picture = persia_marching
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_guilds_f_2_target.governor
+	
+	goto_location = scope:tes_guilds_f_2_target
+	
+	trigger = {
+		war = no
+		any_owned_province = {
+			num_of_fighters >= 2
+			NOT = { has_province_modifier = fighters_guild_hall_lvl1 }
+			state = {
+				any_state_province = {
+					has_province_modifier = fighters_guild_hall_lvl1
+					controller = root
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				num_of_fighters >= 2
+				NOT = { has_province_modifier = fighters_guild_hall_lvl1 }
+				state = {
+					any_state_province = {
+						has_province_modifier = fighters_guild_hall_lvl1
+						controller = root
+					}
+				}
+			}
+			save_scope_as = tes_guilds_f_2_origin
+			state = {
+				random_state_province = {
+					limit = { has_province_modifier = fighters_guild_hall_lvl1 }
+					save_scope_as = tes_guilds_f_2_target
+				}
+			}
+		}
+		
+	}
+	
+	option = {
+		name = "tes_guilds_f.2.a"
+		scope:tes_guilds_f_2_origin = {
+			random_pops_in_province = {
+				limit = { pop_type = fighters }
+				move_pop = scope:tes_guilds_f_2_target
+			}
+		}
+	}
+}
+
+tes_guilds_f.3 = { #fighters guild hall abandoned
+	type = country_event
+	title = "tes_guilds_f.3.t"
+	desc = "tes_guilds_f.3.desc"
+	picture = persia_marching
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:tes_guilds_f_3_target.governor
+	
+	goto_location = scope:tes_guilds_f_3_target
+	
+	trigger = {
+		any_owned_province = {
+			num_of_fighters = 0
+			has_province_modifier = fighters_guild_hall_lvl1
+			NOT = {
+				state = {
+					any_state_province = {
+						num_of_fighters >= 2
+						controller = root
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		random_owned_province = {
+			limit = {
+				num_of_fighters = 0
+				has_province_modifier = fighters_guild_hall_lvl1
+				NOT = {
+					state = {
+						any_state_province = {
+							num_of_fighters >= 2
+							controller = root
+						}
+					}
+				}
+			}
+			save_scope_as = tes_guilds_f_3_target
+		}
+	}
+	
+	option = {
+		name = "tes_guilds_f.3.a"
+		scope:tes_guilds_f_3_target = {
+			remove_province_modifier = fighters_guild_hall_lvl1
+		}
+	}
+}

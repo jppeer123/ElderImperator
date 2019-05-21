@@ -10,7 +10,7 @@ rogues = {
 	
 	score = yes
 	
-	color = hsv { 0.65  0.2  0.8 }
+	color = hsv { 0.35  1  0.2 }
 	
 	ai_max_percentage = 10
 }

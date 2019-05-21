@@ -1,0 +1,19 @@
+create_2_fighters_effect = {
+	create_state_pop = fighter
+	create_state_pop = fighter
+}
+
+create_2_rogues_effect = {
+	create_state_pop = rogues
+	create_state_pop = rogues
+}
+
+create_2_merchants_effect = {
+	create_state_pop = merchants
+	create_state_pop = merchants
+}
+
+create_2_mages_effect = {
+	create_state_pop = mages
+	create_state_pop = mages
+}

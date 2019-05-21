@@ -1,0 +1,29 @@
+﻿monthly_country_pulse = {
+
+	events = {
+		rel_flavor_druidic.10
+		dhe_rome.9
+		dhe_judea.2
+		dhe_judea.3
+		dhe_judea.4
+		dhe_judea.5
+		dhe_judea.7
+	}
+	
+	random_events = {
+		15 = tes_pops.1
+		10 = tes_pops.2
+		5 = tes_pops.3
+		10 = tes_pops.4
+		10 = tes_pops.5
+		5 = tes_pops.6
+		5 = tes_pops.7
+		5 = tes_pops.8
+		5 = tes_pops.9
+		210 = 0
+	}
+	
+	on_actions = {
+		dictatorship_power_held_pulse
+	}
+}
